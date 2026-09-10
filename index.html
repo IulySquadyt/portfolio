@@ -3,15 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iulian-Marian Popa | Cinematics & Technical Showcase</title>
+  <title>Iulian-Marian Popa | Associate Cinematics Designer Showcase</title>
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg-color: #0f1115;
-      --card-bg: #181b22;
-      --text-main: #e6edf3;
-      --text-muted: #8b949e;
-      --accent: #388bfd;
-      --border: #30363d;
+      --bg-dark: #08090d;
+      --card-bg: rgba(18, 21, 29, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-blue: #0070f3;
+      --accent-cyan: #00dfd8;
+      --accent-amber: #ff9900;
+      --accent-glow: rgba(0, 223, 216, 0.15);
+      --text-main: #f0f3f8;
+      --text-muted: #9aa5b5;
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * {
@@ -21,88 +31,186 @@
     }
 
     body {
-      background-color: var(--bg-color);
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(0, 112, 243, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(0, 223, 216, 0.08) 0%, transparent 40%);
+      background-attachment: fixed;
       color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Inter', -apple-system, sans-serif;
       line-height: 1.6;
-      padding: 40px 20px;
+      padding: 60px 24px;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
     }
 
+    /* --- Header / Hero --- */
     header {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 24px;
-      margin-bottom: 40px;
+      margin-bottom: 70px;
+      position: relative;
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 223, 216, 0.1);
+      border: 1px solid rgba(0, 223, 216, 0.3);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent-cyan);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-cyan);
     }
 
     h1 {
-      font-size: 2rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #ffffff 40%, #9aa5b5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .role-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 18px;
+    }
+
+    .hero-bio {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 680px;
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      transition: var(--transition-smooth);
+    }
+
+    .btn-contact:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-blue), #0051b3);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #1a82ff, var(--accent-blue));
+      box-shadow: 0 8px 24px rgba(0, 112, 243, 0.35);
+    }
+
+    /* --- Showcase Cards --- */
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 50px;
+      position: relative;
+      transition: var(--transition-smooth);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Diferentiere subtila de accent pe fiecare sectiune */
+    .project-card.tech {
+      border-top: 2px solid var(--accent-cyan);
+    }
+
+    .project-card.broadcast {
+      border-top: 2px solid var(--accent-amber);
+    }
+
+    .project-card:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .card-header {
+      margin-bottom: 22px;
+    }
+
+    .card-category {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .tech .card-category { color: var(--accent-cyan); }
+    .broadcast .card-category { color: var(--accent-amber); }
+
+    .card-header h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.65rem;
       font-weight: 700;
       color: #fff;
     }
 
-    .role-title {
-      font-size: 1.1rem;
-      color: var(--accent);
-      margin-top: 4px;
-      font-weight: 500;
-    }
-
-    .contacts {
-      margin-top: 12px;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    .contacts a {
-      color: var(--text-muted);
-      text-decoration: none;
-      margin-right: 16px;
-      transition: color 0.2s;
-    }
-
-    .contacts a:hover {
-      color: var(--accent);
-    }
-
-    .section {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 40px;
-    }
-
-    .section h2 {
-      font-size: 1.3rem;
-      margin-bottom: 6px;
-      color: #fff;
-    }
-
-    .section-meta {
-      font-size: 0.85rem;
-      color: var(--accent);
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .video-container {
+    /* --- Video Container --- */
+    .video-wrapper {
       position: relative;
-      padding-bottom: 56.25%; /* Raport 16:9 */
+      padding-bottom: 56.25%; /* Raport cinematic 16:9 */
       height: 0;
       overflow: hidden;
-      border-radius: 6px;
-      background-color: #000;
-      margin-bottom: 20px;
-      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #040508;
+      margin-bottom: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
     }
 
-    .video-container iframe,
+    .video-wrapper iframe,
     .video-placeholder {
       position: absolute;
       top: 0;
@@ -114,113 +222,215 @@
 
     .video-placeholder {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 12px;
+      background: radial-gradient(circle, #151922 0%, #0c0e14 100%);
       color: var(--text-muted);
       font-size: 0.95rem;
-      background: #11141a;
+      text-align: center;
+      padding: 20px;
     }
 
-    .tech-breakdown h3 {
-      font-size: 1rem;
-      margin-bottom: 8px;
+    .play-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #fff;
+      transition: var(--transition-smooth);
     }
 
-    .tech-breakdown ul {
-      list-style-type: none;
+    .video-wrapper:hover .play-icon {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 20px rgba(0, 112, 243, 0.5);
+      transform: scale(1.1);
     }
 
-    .tech-breakdown li {
-      position: relative;
-      padding-left: 20px;
-      margin-bottom: 8px;
-      color: var(--text-muted);
+    /* --- Technical Points Grid --- */
+    .tech-specs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .spec-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 16px;
+      border-radius: 10px;
+      transition: var(--transition-smooth);
+    }
+
+    .spec-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .spec-item h4 {
       font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .tech-breakdown li strong {
-      color: var(--text-main);
+    .spec-item p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
     }
 
-    .tech-breakdown li::before {
-      content: "•";
-      position: absolute;
-      left: 6px;
-      color: var(--accent);
-      font-weight: bold;
+    /* --- Scroll Reveal Animations --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- Footer --- */
     footer {
       text-align: center;
-      font-size: 0.85rem;
+      padding-top: 40px;
+      border-top: 1px solid var(--card-border);
       color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      padding-top: 24px;
-      margin-top: 60px;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 30px 16px; }
+      .project-card { padding: 20px; }
+      .tech-specs { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <header>
+    
+    <!-- Hero / Intro -->
+    <header class="reveal">
+      <div class="badge-status">
+        <span class="status-dot"></span> Available for Cinematics Roles
+      </div>
       <h1>Iulian-Marian Popa</h1>
-      <div class="role-title">Associate Cinematics Designer Showcase</div>
-      <div class="contacts">
-        <a href="mailto:iulianpopa167@gmail.com">iulianpopa167@gmail.com</a>
-        <a href="tel:+40740041206">+40 740 041 206</a>
-        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      <div class="role-title">Associate Cinematics Designer Portfolio</div>
+      <p class="hero-bio">
+        B.Eng. & M.Sc. candidate in Computer Science & Virtual Reality. Combining technical game-engine architecture (IK, Animator Layers, Scene Staging) with professional broadcast pacing and cinematography principles.
+      </p>
+      
+      <div class="contact-bar">
+        <a href="mailto:iulianpopa167@gmail.com" class="btn-contact btn-primary">✉ iulianpopa167@gmail.com</a>
+        <a href="tel:+40740041206" class="btn-contact">📱 +40 740 041 206</a>
+        <a href="https://linkedin.com" target="_blank" class="btn-contact">💼 LinkedIn</a>
       </div>
     </header>
 
-    <!-- Proiect 1: N.E.X.T. -->
-    <div class="section">
-      <h2>N.E.X.T. — Character Animation & Technical Staging</h2>
-      <div class="section-meta">Unity • Layered Animators • Inverse Kinematics (IK) • Lighting</div>
-      
-      <div class="video-container">
-        <!-- Inlocuieste placeholder-ul cu iframe-ul de YouTube/Vimeo cand ai video-ul gata -->
+    <!-- Sectiunea 1: N.E.X.T. (Partea Tehnica & Engine) -->
+    <section class="project-card tech reveal">
+      <div class="card-header">
+        <div class="card-category">Unity • Technical Animation & Staging</div>
+        <h2>N.E.X.T. — Character Systems & Virtual Cinematography</h2>
+      </div>
+
+      <div class="video-wrapper">
+        <!-- Cand ai linkul Unlisted de YouTube/Vimeo, inlocuieste div-ul de mai jos cu tagul de <iframe> -->
         <div class="video-placeholder">
-          [Video Player Embed: YouTube / Vimeo Unlisted]
+          <div class="play-icon">▶</div>
+          <div>
+            <strong>Technical Showcase Video Embed</strong>
+            <p style="font-size: 0.8rem; margin-top: 4px;">Footage demonstrating Animator Layers, Dynamic IK & In-Engine Camera Moves</p>
+          </div>
         </div>
       </div>
 
-      <div class="tech-breakdown">
-        <h3>Technical Focus:</h3>
-        <ul>
-          <li><strong>Layered Animation:</strong> Implemented Animator layers with bone masking to handle simultaneous movement and contextual actions.</li>
-          <li><strong>Inverse Kinematics:</strong> Dynamic Foot IK adaptation to multi-level terrain and procedural bone overrides for terminal interactions.</li>
-          <li><strong>Staging & Composition:</strong> Camera framing, low-light visibility, and environmental pacing designed to sustain dynamic tension.</li>
-        </ul>
+      <div class="tech-specs">
+        <div class="spec-item">
+          <h4>🦴 Layered Animation</h4>
+          <p>Implemented layered state machines with bone masking to handle synchronized movement, locomotion blend trees, and contextual actions.</p>
+        </div>
+        <div class="spec-item">
+          <h4>⚙️ Inverse Kinematics (IK)</h4>
+          <p>Procedural foot IK placement adaptation to multi-level terrain and dynamic bone overrides for terminal and object interactions.</p>
+        </div>
+        <div class="spec-item">
+          <h4>🎥 Staging & Lighting</h4>
+          <p>Carefully composed virtual camera angles, depth of field control, and volumetric lighting designed to maintain narrative pacing and player focus.</p>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Proiect 2: EA SPORTS FC -->
-    <div class="section">
-      <h2>EA SPORTS FC — Broadcast Pacing & Presentation</h2>
-      <div class="section-meta">Broadcast Direction • Dynamic Cameras • Pacing & Rhythm</div>
-      
-      <div class="video-container">
+    <!-- Sectiunea 2: EA SPORTS FC (Partea de Broadcast & Montaj) -->
+    <section class="project-card broadcast reveal">
+      <div class="card-header">
+        <div class="card-category">Broadcast Direction • Pacing & Dynamic Cameras</div>
+        <h2>EA SPORTS FC — Match Presentation & Broadcast Rhythm</h2>
+      </div>
+
+      <div class="video-wrapper">
+        <!-- Cand ai linkul Unlisted de YouTube/Vimeo, inlocuieste div-ul de mai jos cu tagul de <iframe> -->
         <div class="video-placeholder">
-          [Video Player Embed: YouTube / Vimeo Unlisted]
+          <div class="play-icon">▶</div>
+          <div>
+            <strong>Broadcast Cinematics Reel Embed</strong>
+            <p style="font-size: 0.8rem; margin-top: 4px;">Dynamic replay selection, match excitement pacing, and multi-angle presentation cuts</p>
+          </div>
         </div>
       </div>
 
-      <div class="tech-breakdown">
-        <h3>Cinematic Focus:</h3>
-        <ul>
-          <li><strong>Broadcast Pacing:</strong> Fast-paced match presentation cuts referencing live sports broadcasting grammar.</li>
-          <li><strong>Dramatic Framing:</strong> Dynamic shot selection combining low-angle grass cameras, goal celebrations, and player reactions.</li>
-          <li><strong>Rhythm & Montaj:</strong> Video editing and audio-visual synchronization certified via Ilbah Studio (COR 352119).</li>
-        </ul>
+      <div class="tech-specs">
+        <div class="spec-item">
+          <h4>📺 Broadcast Language</h4>
+          <p>Fast-paced match sequences replicating genuine TV sports direction: dynamic field-level angles, goal celebrations, and bench reactions.</p>
+        </div>
+        <div class="spec-item">
+          <h4>⏱️ Visual Pacing</h4>
+          <p>Carefully timed cuts and motion continuity tuned to maximize game excitement, eliminating dead time between dramatic moments.</p>
+        </div>
+        <div class="spec-item">
+          <h4>✂️ Certified Editing</h4>
+          <p>Built upon professional video editing and audio-visual synchronization techniques certified via Ilbah Studio (COR 352119).</p>
+        </div>
       </div>
-    </div>
+    </section>
 
     <footer>
       <p>&copy; 2026 Iulian-Marian Popa • Built with GitHub Pages</p>
     </footer>
+
   </div>
 
+  <!-- JavaScript pentru Scroll Reveal Animations -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.reveal');
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // Ruleaza o singura data pentru fluiditate
+          }
+        });
+      }, {
+        threshold: 0.15 // Declanseaza animatia cand 15% din element intra in ecran
+      });
+
+      reveals.forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>
