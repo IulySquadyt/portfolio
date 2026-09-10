@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iulian-Marian Popa | Associate Cinematics Designer Showcase</title>
+  <title>Iulian-Marian Popa // Cinematics & Staging Reel</title>
   
-  <!-- Google Fonts: Inter & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-dark: #08090d;
-      --card-bg: rgba(18, 21, 29, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --accent-blue: #0070f3;
-      --accent-cyan: #00dfd8;
-      --accent-amber: #ff9900;
-      --accent-glow: rgba(0, 223, 216, 0.15);
-      --text-main: #f0f3f8;
-      --text-muted: #9aa5b5;
-      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --bg: #050608;
+      --panel: #0b0d12;
+      --panel-border: #1a1e27;
+      --panel-border-bright: #2d3444;
+      --accent-cyan: #00f2fe;
+      --accent-amber: #ff9d00;
+      --accent-rec: #ff2a2a;
+      --text-pure: #ffffff;
+      --text-muted: #727a8a;
+      --mono: 'JetBrains Mono', monospace;
+      --display: 'Syne', sans-serif;
     }
 
     * {
@@ -31,187 +31,219 @@
     }
 
     body {
-      background-color: var(--bg-dark);
+      background-color: var(--bg);
       background-image: 
-        radial-gradient(circle at 15% 15%, rgba(0, 112, 243, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 85% 85%, rgba(0, 223, 216, 0.08) 0%, transparent 40%);
-      background-attachment: fixed;
-      color: var(--text-main);
-      font-family: 'Inter', -apple-system, sans-serif;
-      line-height: 1.6;
-      padding: 60px 24px;
-      overflow-x: hidden;
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 40px 40px;
+      color: var(--text-pure);
+      font-family: var(--mono);
+      padding: 40px 24px 80px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .container {
-      max-width: 960px;
+    .wrapper {
+      max-width: 1040px;
       margin: 0 auto;
     }
 
-    /* --- Header / Hero --- */
-    header {
-      margin-bottom: 70px;
-      position: relative;
+    /* --- TOP PRODUCTION SLATE / STATUS BAR --- */
+    .slate-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid var(--panel-border);
+      background: var(--panel);
+      padding: 10px 18px;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      border-left: 3px solid var(--accent-cyan);
     }
 
-    .badge-status {
-      display: inline-flex;
+    .live-rec {
+      display: flex;
       align-items: center;
       gap: 8px;
-      background: rgba(0, 223, 216, 0.1);
-      border: 1px solid rgba(0, 223, 216, 0.3);
-      padding: 6px 14px;
-      border-radius: 99px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--accent-cyan);
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
+      color: var(--accent-rec);
+      font-weight: 700;
     }
 
-    .status-dot {
+    .rec-pulse {
       width: 8px;
       height: 8px;
-      background: var(--accent-cyan);
+      background: var(--accent-rec);
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--accent-cyan);
+      animation: blink 1.2s infinite ease-in-out;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.2; transform: scale(0.85); }
+    }
+
+    /* --- HERO PROFILE HEADER --- */
+    header {
+      border: 1px solid var(--panel-border);
+      background: var(--panel);
+      padding: 40px;
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    header::before {
+      content: "CREW // ROLL #01";
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      background: var(--bg);
+      padding: 0 8px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: flex-start;
     }
 
     h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(2.4rem, 5vw, 3.4rem);
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      line-height: 1.15;
-      background: linear-gradient(135deg, #ffffff 40%, #9aa5b5 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      letter-spacing: -1px;
+      line-height: 1.05;
+      color: var(--text-pure);
+      margin-bottom: 8px;
+      text-transform: uppercase;
     }
 
-    .role-title {
-      font-size: 1.3rem;
-      font-weight: 600;
-      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 18px;
+    .callsign {
+      color: var(--accent-cyan);
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-weight: 700;
     }
 
-    .hero-bio {
+    .hero-statement {
+      font-size: 0.9rem;
       color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 680px;
-      margin-bottom: 28px;
-      font-weight: 300;
+      max-width: 650px;
+      line-height: 1.6;
+      border-left: 2px solid var(--panel-border-bright);
+      padding-left: 16px;
+      margin-bottom: 25px;
     }
 
-    .contact-bar {
+    .contact-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 12px;
     }
 
-    .btn-contact {
+    .slate-btn {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text-pure);
+      text-decoration: none;
+      padding: 8px 16px;
+      background: #141821;
+      border: 1px solid var(--panel-border);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-decoration: none;
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(12px);
-      transition: var(--transition-smooth);
     }
 
-    .btn-contact:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.2);
+    .slate-btn:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      background: #181f2c;
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent-blue), #0051b3);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #fff;
+    .hud-specs {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-left: 1px solid var(--panel-border);
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
 
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #1a82ff, var(--accent-blue));
-      box-shadow: 0 8px 24px rgba(0, 112, 243, 0.35);
+    .hud-specs span {
+      color: var(--text-pure);
     }
 
-    /* --- Showcase Cards --- */
-    .project-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(16px);
-      border-radius: 16px;
-      padding: 32px;
-      margin-bottom: 50px;
+    /* --- PRODUCTION VIEWPORTS (SECTIUNI VIDEO) --- */
+    .viewport-card {
+      border: 1px solid var(--panel-border);
+      background: var(--panel);
+      margin-bottom: 45px;
       position: relative;
-      transition: var(--transition-smooth);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      transition: border-color 0.3s ease;
     }
 
-    /* Diferentiere subtila de accent pe fiecare sectiune */
-    .project-card.tech {
-      border-top: 2px solid var(--accent-cyan);
+    .viewport-card:hover {
+      border-color: var(--panel-border-bright);
     }
 
-    .project-card.broadcast {
-      border-top: 2px solid var(--accent-amber);
-    }
-
-    .project-card:hover {
-      border-color: rgba(255, 255, 255, 0.18);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
-    }
-
-    .card-header {
-      margin-bottom: 22px;
-    }
-
-    .card-category {
+    .viewport-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      background: #0e1017;
+      border-bottom: 1px solid var(--panel-border);
       font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 6px;
     }
 
-    .tech .card-category { color: var(--accent-cyan); }
-    .broadcast .card-category { color: var(--accent-amber); }
+    .viewport-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-    .card-header h2 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.65rem;
+    .scene-tag {
+      background: var(--panel-border);
+      padding: 3px 8px;
+      font-size: 0.7rem;
+      color: var(--text-pure);
+      border-radius: 2px;
+    }
+
+    .next-tag { border-left: 3px solid var(--accent-cyan); }
+    .fc-tag { border-left: 3px solid var(--accent-amber); }
+
+    .viewport-name {
       font-weight: 700;
       color: #fff;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
     }
 
-    /* --- Video Container --- */
-    .video-wrapper {
+    /* MONITOR VIDEO CU RETICUL / CROSSLINES */
+    .monitor-frame {
       position: relative;
-      padding-bottom: 56.25%; /* Raport cinematic 16:9 */
-      height: 0;
+      padding-bottom: 56.25%; /* 16:9 */
+      background: #020304;
+      border-bottom: 1px solid var(--panel-border);
       overflow: hidden;
-      border-radius: 12px;
-      background: #040508;
-      margin-bottom: 26px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
     }
 
-    .video-wrapper iframe,
-    .video-placeholder {
+    .monitor-frame iframe,
+    .screen-placeholder {
       position: absolute;
       top: 0;
       left: 0;
@@ -220,217 +252,289 @@
       border: none;
     }
 
-    .video-placeholder {
+    .screen-placeholder {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      color: var(--text-muted);
       gap: 12px;
-      background: radial-gradient(circle, #151922 0%, #0c0e14 100%);
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .play-icon {
-      width: 52px;
-      height: 52px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      transition: var(--transition-smooth);
-    }
-
-    .video-wrapper:hover .play-icon {
-      background: var(--accent-blue);
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 20px rgba(0, 112, 243, 0.5);
-      transform: scale(1.1);
-    }
-
-    /* --- Technical Points Grid --- */
-    .tech-specs {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
-
-    .spec-item {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 16px;
-      border-radius: 10px;
-      transition: var(--transition-smooth);
-    }
-
-    .spec-item:hover {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(255, 255, 255, 0.08);
-    }
-
-    .spec-item h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .spec-item p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* --- Scroll Reveal Animations --- */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* --- Footer --- */
-    footer {
-      text-align: center;
-      padding-top: 40px;
-      border-top: 1px solid var(--card-border);
-      color: var(--text-muted);
+      text-transform: uppercase;
       font-size: 0.85rem;
+      letter-spacing: 1px;
     }
 
-    @media (max-width: 600px) {
-      body { padding: 30px 16px; }
-      .project-card { padding: 20px; }
-      .tech-specs { grid-template-columns: 1fr; }
+    /* Reticul tehnic / Grid regie suprapus */
+    .reticle-corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      pointer-events: none;
+    }
+    .ret-tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+    .ret-tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+    .ret-bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+    .ret-br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+    .ret-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+      opacity: 0.15;
+    }
+    .ret-center::before, .ret-center::after {
+      content: "";
+      position: absolute;
+      background: #fff;
+    }
+    .ret-center::before { top: 9px; left: 0; width: 20px; height: 1px; }
+    .ret-center::after { left: 9px; top: 0; width: 1px; height: 20px; }
+
+    /* FOOTAGE DATA SHEET / PIPELINE SPECS */
+    .datasheet {
+      padding: 24px;
+    }
+
+    .pipeline-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tech-pill {
+      font-size: 0.7rem;
+      background: #141720;
+      border: 1px solid var(--panel-border);
+      color: var(--text-muted);
+      padding: 4px 10px;
+      letter-spacing: 0.8px;
+    }
+    .tech-pill strong {
+      color: var(--accent-cyan);
+    }
+    .tech-pill.amber strong {
+      color: var(--accent-amber);
+    }
+
+    .specs-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .spec-block h4 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .spec-block h4::before {
+      content: "//";
+      color: var(--panel-border-bright);
+    }
+
+    .spec-block p {
+      font-size: 0.85rem;
+      color: #b3bac5;
+      line-height: 1.6;
+    }
+
+    /* --- FOOTER SLATE --- */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--panel-border);
+      padding-top: 24px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hud-specs { border-left: none; padding-left: 0; border-top: 1px solid var(--panel-border); padding-top: 16px; }
+      header { padding: 24px; }
+      footer { flex-direction: column; gap: 10px; text-align: left; }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <div class="wrapper">
     
-    <!-- Hero / Intro -->
-    <header class="reveal">
-      <div class="badge-status">
-        <span class="status-dot"></span> Available for Cinematics Roles
+    <!-- SYSTEM STATUS MONITOR -->
+    <div class="slate-bar">
+      <div class="live-rec">
+        <span class="rec-pulse"></span> REC // IN-ENGINE PLAYBACK
       </div>
-      <h1>Iulian-Marian Popa</h1>
-      <div class="role-title">Associate Cinematics Designer Portfolio</div>
-      <p class="hero-bio">
-        B.Eng. & M.Sc. candidate in Computer Science & Virtual Reality. Combining technical game-engine architecture (IK, Animator Layers, Scene Staging) with professional broadcast pacing and cinematography principles.
-      </p>
-      
-      <div class="contact-bar">
-        <a href="mailto:iulianpopa167@gmail.com" class="btn-contact btn-primary">✉ iulianpopa167@gmail.com</a>
-        <a href="tel:+40740041206" class="btn-contact">📱 +40 740 041 206</a>
-        <a href="https://linkedin.com" target="_blank" class="btn-contact">💼 LinkedIn</a>
+      <div>PROJECT: EA SPORTS FC SHOWCASE</div>
+      <div id="timecode">00:00:00:00</div>
+    </div>
+
+    <!-- PRODUCTION CREW / APPLICANT PROFILE -->
+    <header>
+      <div class="hero-grid">
+        <div>
+          <h1>Iulian Popa</h1>
+          <div class="callsign">Associate Cinematics Designer // Candidate</div>
+          <p class="hero-statement">
+            Bridging procedural game architecture with cinematic staging. Specializing in Unity character animators, dynamic inverse kinematics (IK), lens composition, and broadcast-paced action editing.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:iulianpopa167@gmail.com" class="slate-btn">✉ iulianpopa167@gmail.com</a>
+            <a href="tel:+40740041206" class="slate-btn">✆ +40 740 041 206</a>
+            <a href="https://linkedin.com" target="_blank" class="slate-btn">↗ LinkedIn Profile</a>
+          </div>
+        </div>
+
+        <div class="hud-specs">
+          <div>DEGREE: <span>B.Eng. (10/10) // M.Sc. GMRV</span></div>
+          <div>FOCUS: <span>Real-time Staging & IK</span></div>
+          <div>EDITING: <span>Ilbah Studio Certified</span>[cite: 1]</div>
+          <div>PIPELINE: <span>Unity / Blender / PR</span>[cite: 1]</div>
+          <div>STATUS: <span>Available (Bucharest)</span></div>
+        </div>
       </div>
     </header>
 
-    <!-- Sectiunea 1: N.E.X.T. (Partea Tehnica & Engine) -->
-    <section class="project-card tech reveal">
-      <div class="card-header">
-        <div class="card-category">Unity • Technical Animation & Staging</div>
-        <h2>N.E.X.T. — Character Systems & Virtual Cinematography</h2>
+    <!-- SECTION 1: TECHNICAL ENGINE STAGING & ANIMATION -->
+    <section class="viewport-card">
+      <div class="viewport-header">
+        <div class="viewport-title">
+          <span class="scene-tag next-tag">CAM RIG // PASS 01</span>
+          <span class="viewport-name">N.E.X.T. — Character Systems & In-Engine Staging</span>
+        </div>
+        <div style="color: var(--accent-cyan); font-size: 0.75rem;">UNITY // TIMELINE</div>
       </div>
 
-      <div class="video-wrapper">
-        <!-- Cand ai linkul Unlisted de YouTube/Vimeo, inlocuieste div-ul de mai jos cu tagul de <iframe> -->
-        <div class="video-placeholder">
-          <div class="play-icon">▶</div>
-          <div>
-            <strong>Technical Showcase Video Embed</strong>
-            <p style="font-size: 0.8rem; margin-top: 4px;">Footage demonstrating Animator Layers, Dynamic IK & In-Engine Camera Moves</p>
+      <!-- MONITOR SCREEN -->
+      <div class="monitor-frame">
+        <div class="reticle-corner ret-tl"></div>
+        <div class="reticle-corner ret-tr"></div>
+        <div class="reticle-corner ret-bl"></div>
+        <div class="reticle-corner ret-br"></div>
+        <div class="ret-center"></div>
+
+        <!-- REEMPLACEAZA ACEST BLOC CU IFRAME-UL YOUTUBE/VIMEO DUPA UPLOAD -->
+        <div class="screen-placeholder">
+          <div style="font-size: 1.8rem; color: #fff;">▶</div>
+          <div>[ Technical Breakdown: Animator Layers & Procedural IK ]</div>
+          <div style="font-size: 0.7rem; color: #4a5263;">Awaiting YouTube / Vimeo Unlisted Embed</div>
+        </div>
+      </div>
+
+      <!-- SPECS & DATA SHEET -->
+      <div class="datasheet">
+        <div class="pipeline-badges">
+          <div class="tech-pill">ENGINE: <strong>UNITY</strong>[cite: 1]</div>
+          <div class="tech-pill">RIG: <strong>HUMANOID + IK PASS</strong>[cite: 1]</div>
+          <div class="tech-pill">SYSTEM: <strong>LAYERED ANIMATORS</strong>[cite: 1]</div>
+          <div class="tech-pill">STAGING: <strong>DYNAMIC LOW-LIGHT</strong>[cite: 1]</div>
+        </div>
+
+        <div class="specs-columns">
+          <div class="spec-block">
+            <h4>Layered Animators & Bone Overrides</h4>
+            <p>Built multi-layer Animator State Machines using bone masking[cite: 1]. Decouples locomotion states from procedural wrist-terminal interactions and cinematic head-look tracking[cite: 1].</p>
           </div>
-        </div>
-      </div>
-
-      <div class="tech-specs">
-        <div class="spec-item">
-          <h4>🦴 Layered Animation</h4>
-          <p>Implemented layered state machines with bone masking to handle synchronized movement, locomotion blend trees, and contextual actions.</p>
-        </div>
-        <div class="spec-item">
-          <h4>⚙️ Inverse Kinematics (IK)</h4>
-          <p>Procedural foot IK placement adaptation to multi-level terrain and dynamic bone overrides for terminal and object interactions.</p>
-        </div>
-        <div class="spec-item">
-          <h4>🎥 Staging & Lighting</h4>
-          <p>Carefully composed virtual camera angles, depth of field control, and volumetric lighting designed to maintain narrative pacing and player focus.</p>
+          <div class="spec-block">
+            <h4>Procedural Inverse Kinematics (IK)</h4>
+            <p>Two-bone IK solving for realistic foot adaptation over uneven terrain geometry[cite: 1]. Eliminates foot-sliding and grounds the character dynamically within real-time environments.</p>
+          </div>
+          <div class="spec-block">
+            <h4>Atmospheric Camera Staging</h4>
+            <p>Spatial framing configured with narrow depth-of-field passes and volumetric light shafts, maintaining tension and directing player focus across multi-level layouts[cite: 1].</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Sectiunea 2: EA SPORTS FC (Partea de Broadcast & Montaj) -->
-    <section class="project-card broadcast reveal">
-      <div class="card-header">
-        <div class="card-category">Broadcast Direction • Pacing & Dynamic Cameras</div>
-        <h2>EA SPORTS FC — Match Presentation & Broadcast Rhythm</h2>
+    <!-- SECTION 2: BROADCAST PACING & REPLAY CINEMATICS -->
+    <section class="viewport-card">
+      <div class="viewport-header">
+        <div class="viewport-title">
+          <span class="scene-tag fc-tag">BROADCAST // PASS 02</span>
+          <span class="viewport-name">EA SPORTS FC — Match Presentation & Dynamic Pacing</span>
+        </div>
+        <div style="color: var(--accent-amber); font-size: 0.75rem;">LIVE PACING // REPLAY</div>
       </div>
 
-      <div class="video-wrapper">
-        <!-- Cand ai linkul Unlisted de YouTube/Vimeo, inlocuieste div-ul de mai jos cu tagul de <iframe> -->
-        <div class="video-placeholder">
-          <div class="play-icon">▶</div>
-          <div>
-            <strong>Broadcast Cinematics Reel Embed</strong>
-            <p style="font-size: 0.8rem; margin-top: 4px;">Dynamic replay selection, match excitement pacing, and multi-angle presentation cuts</p>
+      <!-- MONITOR SCREEN -->
+      <div class="monitor-frame">
+        <div class="reticle-corner ret-tl"></div>
+        <div class="reticle-corner ret-tr"></div>
+        <div class="reticle-corner ret-bl"></div>
+        <div class="reticle-corner ret-br"></div>
+        <div class="ret-center"></div>
+
+        <!-- REEMPLACEAZA ACEST BLOC CU IFRAME-UL YOUTUBE/VIMEO DUPA UPLOAD -->
+        <div class="screen-placeholder">
+          <div style="font-size: 1.8rem; color: #fff;">▶</div>
+          <div>[ Broadcast Presentation Reel: Dynamic Shots & Match Pacing ]</div>
+          <div style="font-size: 0.7rem; color: #4a5263;">Awaiting YouTube / Vimeo Unlisted Embed</div>
+        </div>
+      </div>
+
+      <!-- SPECS & DATA SHEET -->
+      <div class="datasheet">
+        <div class="pipeline-badges">
+          <div class="tech-pill amber">MEDIA: <strong>EA SPORTS FC</strong></div>
+          <div class="tech-pill amber">LANGUAGE: <strong>BROADCAST TELEVISION</strong></div>
+          <div class="tech-pill amber">CERTIFICATION: <strong>COR 352119 (10/10)</strong>[cite: 1]</div>
+          <div class="tech-pill amber">PACING: <strong>DYNAMIC REPLAY</strong></div>
+        </div>
+
+        <div class="specs-columns">
+          <div class="spec-block">
+            <h4>Live Match Framing</h4>
+            <p>Selective camera sequencing mirroring real-world sports broadcast standards: low turf-level hero shots, celebration tracking, and bench cutaways.</p>
           </div>
-        </div>
-      </div>
-
-      <div class="tech-specs">
-        <div class="spec-item">
-          <h4>📺 Broadcast Language</h4>
-          <p>Fast-paced match sequences replicating genuine TV sports direction: dynamic field-level angles, goal celebrations, and bench reactions.</p>
-        </div>
-        <div class="spec-item">
-          <h4>⏱️ Visual Pacing</h4>
-          <p>Carefully timed cuts and motion continuity tuned to maximize game excitement, eliminating dead time between dramatic moments.</p>
-        </div>
-        <div class="spec-item">
-          <h4>✂️ Certified Editing</h4>
-          <p>Built upon professional video editing and audio-visual synchronization techniques certified via Ilbah Studio (COR 352119).</p>
+          <div class="spec-block">
+            <h4>Rhythm & Dramatic Continuity</h4>
+            <p>Micro-cut editing designed to build high-stakes tension. Eliminates non-essential transitions to emphasize immediate physical impact and ball momentum.</p>
+          </div>
+          <div class="spec-block">
+            <h4>Professional Editing Standards</h4>
+            <p>Grounded in accredited broadcast editing methodology certified by the Romanian Ministry of Labor via Ilbah Studio[cite: 1].</p>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- PRODUCTION FOOTER -->
     <footer>
-      <p>&copy; 2026 Iulian-Marian Popa • Built with GitHub Pages</p>
+      <div>SYS // GITHUB PAGES DEPLOYMENT</div>
+      <div>IULIAN-MARIAN POPA // BUCHAREST, RO</div>
     </footer>
 
   </div>
 
-  <!-- JavaScript pentru Scroll Reveal Animations -->
+  <!-- TIMECODE SIMULATOR SCRIPT -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const reveals = document.querySelectorAll('.reveal');
-
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target); // Ruleaza o singura data pentru fluiditate
-          }
-        });
-      }, {
-        threshold: 0.15 // Declanseaza animatia cand 15% din element intra in ecran
-      });
-
-      reveals.forEach(el => observer.observe(el));
-    });
+    function updateTimecode() {
+      const now = new Date();
+      const hrs = String(now.getHours()).padStart(2, '0');
+      const mins = String(now.getMinutes()).padStart(2, '0');
+      const secs = String(now.getSeconds()).padStart(2, '0');
+      const frames = String(Math.floor((now.getMilliseconds() / 1000) * 60)).padStart(2, '0');
+      
+      const tcEl = document.getElementById('timecode');
+      if (tcEl) {
+        tcEl.textContent = `${hrs}:${mins}:${secs}:${frames}`;
+      }
+    }
+    setInterval(updateTimecode, 16); // Ruleaza la ~60 FPS
   </script>
 </body>
 </html>
