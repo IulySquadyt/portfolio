@@ -3,27 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iulian Popa // Cinematics Designer Portfolio</title>
+  <title>Iulian Popa — Creative Direction, 3D Systems & Motion</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-base: #030407;
-      --card-bg-1: rgba(13, 17, 26, 0.75);
-      --card-bg-2: rgba(22, 16, 12, 0.75);
-      --cyan-neon: #00f2fe;
-      --cyan-glow: rgba(0, 242, 254, 0.4);
-      --amber-neon: #ff8c00;
-      --amber-glow: rgba(255, 140, 0, 0.4);
-      --crimson: #ff2a4b;
-      --text-main: #f3f6fb;
-      --text-sub: #8792a7;
-      --font-display: 'Cinzel', serif;
+      --bg: #06070a;
+      --card-glass: rgba(13, 16, 23, 0.72);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-active: rgba(0, 242, 254, 0.4);
+      --accent-cyan: #00f2fe;
+      --accent-cyan-glow: rgba(0, 242, 254, 0.25);
+      --accent-orange: #ff7b00;
+      --text-pure: #ffffff;
+      --text-muted: #8b96a8;
+      --font-display: 'Space Grotesk', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
-      --font-tech: 'Space Mono', monospace;
+      --font-mono: 'Space Mono', monospace;
     }
 
     * {
@@ -33,16 +32,16 @@
     }
 
     body {
-      background-color: var(--bg-base);
-      color: var(--text-main);
+      background-color: var(--bg);
+      color: var(--text-pure);
       font-family: var(--font-body);
+      line-height: 1.6;
       overflow-x: hidden;
       min-height: 100vh;
       position: relative;
     }
 
-    /* CANVAS DE PARTICULE & RADIAL GRADIENT AURORA */
-    #ambient-canvas {
+    #bg-canvas {
       position: fixed;
       top: 0;
       left: 0;
@@ -52,269 +51,181 @@
       pointer-events: none;
     }
 
-    .aurora-blur {
-      position: fixed;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      filter: blur(140px);
-      opacity: 0.15;
-      pointer-events: none;
-      z-index: 0;
-      transition: transform 0.2s ease-out;
-    }
-    .aurora-1 {
-      top: -100px;
-      left: -100px;
-      background: radial-gradient(circle, var(--cyan-neon), transparent 70%);
-    }
-    .aurora-2 {
-      bottom: -100px;
-      right: -100px;
-      background: radial-gradient(circle, var(--amber-neon), transparent 70%);
-    }
-
-    /* CRT SCANLINE SUBTIL PE TOT ECRANUL */
-    .scanlines {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-      background-size: 100% 4px;
-      z-index: 99;
-      pointer-events: none;
-      opacity: 0.6;
-    }
-
     .container {
       position: relative;
       z-index: 10;
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 40px 24px 100px;
     }
 
-    /* TOP FLOATING HUD */
-    .hud-header {
+    /* TOP BAR SLATE */
+    .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 24px;
-      background: rgba(10, 13, 20, 0.6);
+      padding: 14px 28px;
+      background: rgba(11, 14, 20, 0.6);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
       border-radius: 99px;
-      font-family: var(--font-tech);
+      margin-bottom: 60px;
+      font-family: var(--font-mono);
       font-size: 0.78rem;
-      color: var(--text-sub);
-      margin-bottom: 50px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
     }
 
-    .rec-indicator {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--crimson);
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    .rec-dot {
-      width: 9px;
-      height: 9px;
-      background: var(--crimson);
-      border-radius: 50%;
-      box-shadow: 0 0 12px var(--crimson);
-      animation: pulse-rec 1.2s infinite;
-    }
-
-    @keyframes pulse-rec {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.3; transform: scale(0.85); }
-    }
-
-    /* HERO SECTION */
-    .hero {
-      position: relative;
-      padding: 60px 40px;
-      background: rgba(12, 16, 24, 0.45);
-      backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      margin-bottom: 70px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--cyan-neon), transparent);
-    }
-
-    .hero-pretitle {
-      font-family: var(--font-tech);
-      font-size: 0.85rem;
-      letter-spacing: 3px;
-      color: var(--cyan-neon);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      text-shadow: 0 0 10px var(--cyan-glow);
-    }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
-      font-weight: 900;
-      letter-spacing: -1px;
-      line-height: 1.05;
-      background: linear-gradient(135deg, #ffffff 40%, #8ea1c1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 12px;
-    }
-
-    .hero-role {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 20px;
+    .brand-id {
       display: flex;
       align-items: center;
       gap: 12px;
+      color: var(--text-pure);
+      font-weight: 700;
     }
 
-    .hero-role .badge {
-      background: rgba(0, 242, 254, 0.12);
-      border: 1px solid var(--cyan-neon);
-      color: var(--cyan-neon);
-      font-size: 0.75rem;
-      font-family: var(--font-tech);
-      padding: 4px 12px;
-      border-radius: 99px;
-      letter-spacing: 1px;
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-cyan);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.8); }
+    }
+
+    /* STATEMENT / HERO */
+    .hero {
+      margin-bottom: 80px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent-cyan);
       text-transform: uppercase;
+      letter-spacing: 2.5px;
+      margin-bottom: 12px;
     }
 
-    .hero-desc {
-      color: var(--text-sub);
-      font-size: 1.05rem;
-      max-width: 680px;
-      line-height: 1.7;
-      margin-bottom: 35px;
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6.5vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff 40%, #8e9bb0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-manifesto {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 820px;
+      line-height: 1.8;
       font-weight: 300;
+      margin-bottom: 36px;
     }
 
-    .actions-grid {
+    .hero-manifesto strong {
+      color: var(--text-pure);
+      font-weight: 500;
+    }
+
+    .contact-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 14px;
     }
 
-    .btn-action {
-      font-family: var(--font-tech);
-      font-size: 0.85rem;
-      padding: 12px 24px;
+    .action-btn {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      padding: 12px 22px;
       border-radius: 12px;
       text-decoration: none;
-      color: #fff;
+      color: var(--text-pure);
       background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       display: inline-flex;
       align-items: center;
       gap: 10px;
     }
 
-    .btn-action:hover {
+    .action-btn:hover {
       background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.3);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
 
-    .btn-action.glow-cyan:hover {
-      border-color: var(--cyan-neon);
-      box-shadow: 0 0 25px var(--cyan-glow);
-      color: var(--cyan-neon);
+    .action-btn.primary {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(0, 112, 243, 0.15));
+      border-color: var(--accent-cyan);
     }
 
-    /* SHOWCASE CARDS (3D TILT & GLOW) */
-    .showcase-card {
-      position: relative;
-      border-radius: 24px;
-      margin-bottom: 60px;
-      padding: 36px;
-      background: var(--card-bg-1);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.1s ease;
-    }
-
-    .showcase-card.amber-theme {
-      background: var(--card-bg-2);
-    }
-
-    .showcase-card.cyan-theme:hover {
-      border-color: rgba(0, 242, 254, 0.3);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 242, 254, 0.15);
-    }
-
-    .showcase-card.amber-theme:hover {
-      border-color: rgba(255, 140, 0, 0.3);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 140, 0, 0.15);
-    }
-
-    .card-top {
+    /* SECTION TITLES */
+    .section-header {
       display: flex;
+      align-items: baseline;
       justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 16px;
+      margin-bottom: 36px;
     }
 
-    .project-eyebrow {
-      font-family: var(--font-tech);
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .cyan-theme .project-eyebrow { color: var(--cyan-neon); }
-    .amber-theme .project-eyebrow { color: var(--amber-neon); }
-
-    .project-name {
+    .section-title {
       font-family: var(--font-display);
       font-size: 1.8rem;
       font-weight: 700;
-      color: #fff;
+      letter-spacing: -0.5px;
     }
 
-    /* THEATER SCREEN / VIDEO CONTAINER */
-    .theater-screen {
+    .section-counter {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
+      letter-spacing: 1px;
+    }
+
+    /* 3D SYSTEMS SHOWCASE (N.E.X.T.) */
+    .featured-project {
+      background: var(--card-glass);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 36px;
+      backdrop-filter: blur(20px);
+      margin-bottom: 90px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+      transition: all 0.4s ease;
+    }
+
+    .featured-project:hover {
+      border-color: var(--card-border-active);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 40px var(--accent-cyan-glow);
+    }
+
+    .video-viewport {
       position: relative;
       padding-bottom: 56.25%; /* 16:9 */
       border-radius: 16px;
       overflow: hidden;
-      background: #020305;
-      margin-bottom: 30px;
+      background: #000;
+      margin-bottom: 28px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.9), 0 15px 35px rgba(0, 0, 0, 0.5);
     }
 
-    .theater-screen iframe,
-    .screen-fallback {
+    .video-viewport iframe,
+    .placeholder-screen {
       position: absolute;
       top: 0;
       left: 0;
@@ -323,286 +234,540 @@
       border: none;
     }
 
-    .screen-fallback {
+    .placeholder-screen {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      background: radial-gradient(circle at center, #101522 0%, #030408 100%);
-      color: var(--text-sub);
+      background: radial-gradient(circle at center, #131722 0%, #06080d 100%);
+      color: var(--text-muted);
+      gap: 14px;
     }
 
-    .pulse-play-btn {
+    .play-trigger {
       width: 68px;
       height: 68px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
       color: #fff;
-      backdrop-filter: blur(8px);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      font-size: 1.4rem;
+      transition: all 0.3s ease;
     }
 
-    .showcase-card:hover .pulse-play-btn {
-      transform: scale(1.15);
-      background: var(--text-main);
+    .featured-project:hover .play-trigger {
+      transform: scale(1.1);
+      background: var(--accent-cyan);
       color: #000;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 30px var(--accent-cyan-glow);
     }
 
-    /* RETICULE OVERLAY PENTRU VIEWPORT */
-    .view-reticle {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      pointer-events: none;
-    }
-    .vr-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
-    .vr-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
-    .vr-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
-    .vr-br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
-
-    /* SPECIFICATION MATRIX */
-    .specs-matrix {
+    .specs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
 
-    .matrix-card {
+    .spec-box {
       background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       padding: 20px;
       border-radius: 14px;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
     }
 
-    .matrix-card:hover {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(255, 255, 255, 0.12);
-      transform: translateY(-2px);
-    }
-
-    .matrix-card h4 {
-      font-family: var(--font-tech);
-      font-size: 0.82rem;
-      letter-spacing: 1px;
+    .spec-box h4 {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
       text-transform: uppercase;
+      letter-spacing: 1px;
       margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
-    .cyan-theme .matrix-card h4 { color: var(--cyan-neon); }
-    .amber-theme .matrix-card h4 { color: var(--amber-neon); }
-
-    .matrix-card p {
+    .spec-box p {
       font-size: 0.9rem;
-      color: var(--text-sub);
+      color: var(--text-muted);
       line-height: 1.6;
     }
 
-    /* SCROLL TRIGGER FADE IN */
-    .scroll-target {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    /* PLAYLIST & VIDEO SUITE (REFERINTA DOINA ZAVADSCHI) */
+    .editing-suite {
+      margin-bottom: 90px;
     }
 
-    .scroll-target.in-view {
-      opacity: 1;
-      transform: translateY(0);
+    .suite-layout {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 24px;
+      background: var(--card-glass);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 28px;
+      backdrop-filter: blur(20px);
+    }
+
+    .current-stage {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .active-screen {
+      position: relative;
+      padding-bottom: 56.25%;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #020305;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 16px;
+    }
+
+    .active-screen iframe,
+    .active-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .active-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      gap: 12px;
+      background: #0a0d14;
+    }
+
+    .active-meta h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .active-meta p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* PLAYLIST PANEL */
+    .playlist-panel {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .playlist-header {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .playlist-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 440px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .playlist-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .playlist-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateX(4px);
+    }
+
+    .playlist-item.active {
+      background: rgba(0, 242, 254, 0.08);
+      border-color: var(--accent-cyan);
+    }
+
+    .item-thumb {
+      width: 80px;
+      height: 48px;
+      border-radius: 6px;
+      background: #121622;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      font-family: var(--font-mono);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .item-info h5 {
+      font-size: 0.88rem;
+      color: #fff;
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .item-info span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .item-duration {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* SPECTRUM MATRIX */
+    .skills-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 90px;
+    }
+
+    .skill-card {
+      background: var(--card-glass);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 28px;
+      backdrop-filter: blur(16px);
+    }
+
+    .skill-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      color: var(--text-muted);
+    }
+
+    .skill-pill strong {
+      color: var(--text-pure);
     }
 
     footer {
-      text-align: center;
-      font-family: var(--font-tech);
-      font-size: 0.8rem;
-      color: var(--text-sub);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 40px;
-      letter-spacing: 1px;
+      border-top: 1px solid var(--card-border);
+      padding-top: 36px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
 
-    @media (max-width: 768px) {
-      .hero { padding: 30px 20px; }
-      .showcase-card { padding: 20px; }
-      .card-top { flex-direction: column; align-items: flex-start; gap: 10px; }
+    @media (max-width: 860px) {
+      .suite-layout { grid-template-columns: 1fr; }
+      .container { padding: 30px 16px 60px; }
+      .hero-name { font-size: 2.8rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- BACKGROUND PARTICLES & GLOW -->
-  <canvas id="ambient-canvas"></canvas>
-  <div class="aurora-blur aurora-1" id="aurora-mouse"></div>
-  <div class="aurora-blur aurora-2"></div>
-  <div class="scanlines"></div>
+  <canvas id="bg-canvas"></canvas>
 
   <div class="container">
     
-    <!-- TOP STATUS BAR -->
-    <div class="hud-header">
-      <div class="rec-indicator">
-        <span class="rec-dot"></span> MASTER BROADCAST
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <div class="brand-id">
+        <span class="status-dot"></span> IULIAN POPA
       </div>
-      <div>EA SPORTS FC // CINEMATICS SHOWCASE</div>
-      <div id="live-timecode">00:00:00:00</div>
+      <div>CREATIVE & TECHNICAL DIRECTION</div>
+      <div>BUCHAREST, RO</div>
     </div>
 
-    <!-- HERO PROFILE -->
-    <section class="hero scroll-target">
-      <div class="hero-pretitle">// Associate Cinematics Designer Portfolio</div>
-      <h1 class="hero-title">Iulian Popa</h1>
-      <div class="hero-role">
-        Technical Staging & Cinematography
-        <span class="badge">Unity & Blender</span>[cite: 1]
-      </div>
-      <p class="hero-desc">
-        M.Sc. candidate in Graphics & Virtual Reality[cite: 1]. Blending in-engine animation architecture (Procedural Inverse Kinematics, Layered State Machines) with broadcast-level match presentation and dramatic lens work[cite: 1].
+    <!-- HERO / STATEMENT -->
+    <header class="hero">
+      <div class="hero-eyebrow">Creative Systems & Motion</div>
+      <h1 class="hero-name">Visual Direction.<br>Real-Time Staging.</h1>
+      <p class="hero-manifesto">
+        I believe that whether you work inside a game engine or a montage timeline, visual storytelling lives and dies by <strong>rhythm, spatial weight, and deliberate camera motion</strong>. Graduating in Computer Engineering (GPA 10/10) and advancing in Graphics & Virtual Reality, my practice bridges technical procedural rigging and state machines with the emotive pacing of cinematic editing.
       </p>
       
-      <div class="actions-grid">
-        <a href="mailto:iulianpopa167@gmail.com" class="btn-action glow-cyan">✉ iulianpopa167@gmail.com</a>
-        <a href="tel:+40740041206" class="btn-action">📱 +40 740 041 206</a>
-        <a href="https://linkedin.com" target="_blank" class="btn-action">💼 LinkedIn Profile</a>
+      <div class="contact-nav">
+        <a href="mailto:iulianpopa167@gmail.com" class="action-btn primary">✉ iulianpopa167@gmail.com</a>
+        <a href="tel:+40740041206" class="action-btn">📱 +40 740 041 206</a>
+        <a href="https://linkedin.com" target="_blank" class="action-btn">↗ LinkedIn Profile</a>
+      </div>
+    </header>
+
+    <!-- SECTION 1: 3D REAL-TIME SYSTEMS -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">01 / Real-Time Systems & Staging</h2>
+        <span class="section-counter">UNITY // TIMELINE // INVERSE KINEMATICS</span>
+      </div>
+
+      <div class="featured-project">
+        <div class="video-viewport">
+          <!-- Inlocuieste div-ul de mai jos cu iframe cand ai linkul YouTube/Vimeo unlisted -->
+          <div class="placeholder-screen">
+            <div class="play-trigger">▶</div>
+            <div style="font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 1px;">
+              [ N.E.X.T. TECHNICAL STAGING & ANIMATOR REEL ]
+            </div>
+            <div style="font-size: 0.75rem; color: #5a667d;">Awaiting YouTube / Vimeo Unlisted Embed</div>
+          </div>
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-box">
+            <h4>Layered Animators & Overrides</h4>
+            <p>Architected multi-tier Animator Controller logic with bone masking[cite: 1]. Decouples locomotion blend trees from real-time contextual interactions and head-aim tracking[cite: 1].</p>
+          </div>
+          <div class="spec-box">
+            <h4>Procedural Inverse Kinematics (IK)</h4>
+            <p>Two-bone IK foot positioning solving uneven terrain geometries and dynamic bone overrides for tactile terminal inspections[cite: 1].</p>
+          </div>
+          <div class="spec-box">
+            <h4>Virtual Cinematography</h4>
+            <p>Engineered dynamic camera staging, volumetric light cues, and narrow depth-of-field passes tuned to sustain spatial tension across multi-level facilities[cite: 1].</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- SHOWCASE 1: NEXT (CYAN THEME) -->
-    <section class="showcase-card cyan-theme scroll-target" id="card-1">
-      <div class="card-top">
-        <div>
-          <div class="project-eyebrow">Technical Animation & Virtual Cinematography</div>
-          <h2 class="project-name">N.E.X.T. — Character Systems & Staging</h2>
-        </div>
-        <div style="font-family: var(--font-tech); font-size: 0.8rem; color: var(--cyan-neon);">
-          ENGINE: UNITY // RIG: HUMANOID[cite: 1]
-        </div>
+    <!-- SECTION 2: EDITING SUITE & PLAYLIST (DOINA ZAVADSCHI STYLE) -->
+    <section class="editing-suite">
+      <div class="section-header">
+        <h2 class="section-title">02 / Cinematic Pacing & Motion</h2>
+        <span class="section-counter">CURATED EDITING SHOWCASE</span>
       </div>
 
-      <div class="theater-screen">
-        <div class="view-reticle vr-tl"></div>
-        <div class="view-reticle vr-tr"></div>
-        <div class="view-reticle vr-bl"></div>
-        <div class="view-reticle vr-br"></div>
+      <div class="suite-layout">
         
-        <!-- Cand ai linkul Unlisted pe YouTube/Vimeo, inlocuieste div-ul de mai jos cu tagul <iframe> -->
-        <div class="screen-fallback">
-          <div class="pulse-play-btn">▶</div>
-          <div style="font-family: var(--font-tech); font-size: 0.85rem; letter-spacing: 1px;">
-            [ TECHNICAL BREAKDOWN REEL EMBED ]
+        <!-- LARGE ACTIVE PLAYER -->
+        <div class="current-stage">
+          <div class="active-screen">
+            <!-- Cand dai click in playlist, iframe-ul sau placeholderul se actualizeaza via JS -->
+            <div class="active-placeholder" id="main-player-target">
+              <div class="play-trigger">▶</div>
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 1px;" id="player-title">
+                EA SPORTS FC — BROADCAST PACING & REPLAY
+              </div>
+              <div style="font-size: 0.7rem; color: #5a667d;">Select any project from the playlist to preview</div>
+            </div>
           </div>
-          <div style="font-size: 0.75rem; color: #5a667d;">Awaiting YouTube / Vimeo Unlisted URL</div>
+
+          <div class="active-meta">
+            <h3 id="meta-title">EA SPORTS FC 26 — Match Presentation & Tension</h3>
+            <p id="meta-desc">
+              Broadcast-inspired recap study focusing on match rhythm, turf-level camera angles, dramatic replay transitions, and audiovisual momentum.
+            </p>
+          </div>
         </div>
+
+        <!-- SELECTABLE PLAYLIST -->
+        <div class="playlist-panel">
+          <div class="playlist-header">
+            <span>Selected Works</span>
+            <span>Playlist (3 Works)</span>
+          </div>
+
+          <div class="playlist-items">
+            
+            <!-- Proiect 1: EA FC 26 -->
+            <div class="playlist-item active" 
+                 onclick="switchVideo(
+                   'EA SPORTS FC 26 — Match Presentation & Tension', 
+                   'Broadcast-inspired recap study focusing on match rhythm, turf-level camera angles, dramatic replay transitions, and audiovisual momentum.', 
+                   'https://www.youtube.com/embed/YOUR_ID_AICI', 
+                   this
+                 )">
+              <div class="item-thumb">FC 26</div>
+              <div class="item-info">
+                <h5>Weekend League Edit</h5>
+                <span>Broadcast Pacing</span>
+              </div>
+              <div class="item-duration">1:00</div>
+            </div>
+
+            <!-- Proiect 2: Commercial / Personal Showcase -->
+            <div class="playlist-item" 
+                 onclick="switchVideo(
+                   'Brand & Product Showcase Edit', 
+                   'Rhythmic montage exploring color grading, dynamic typographic transitions, and sound-driven visual cuts built in Adobe Premiere Pro and After Effects.', 
+                   'https://www.youtube.com/embed/YOUR_ID_AICI', 
+                   this
+                 )">
+              <div class="item-thumb">PR / AE</div>
+              <div class="item-info">
+                <h5>Visual Motion & VFX</h5>
+                <span>Rhythmic Montage</span>
+              </div>
+              <div class="item-duration">0:45</div>
+            </div>
+
+            <!-- Proiect 3: Short Cinematic Narrative / Trailer -->
+            <div class="playlist-item" 
+                 onclick="switchVideo(
+                   'Narrative Teaser & Sound Design', 
+                   'Atmospheric pacing, scene continuity, and tension pacing certified under national editing standards via Ilbah Studio (COR 352119).', 
+                   'https://www.youtube.com/embed/YOUR_ID_AICI', 
+                   this
+                 )">
+              <div class="item-thumb">FILM</div>
+              <div class="item-info">
+                <h5>Atmospheric Narrative</h5>
+                <span>Sound & Continuity</span>
+              </div>
+              <div class="item-duration">1:15</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: SKILLS SPECTRUM -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">03 / Production Spectrum</h2>
+        <span class="section-counter">PIPELINES & CORE CAPABILITIES</span>
       </div>
 
-      <div class="specs-matrix">
-        <div class="matrix-card">
-          <h4>🦴 Layered Animators</h4>
-          <p>Multi-tier Animator Controller utilizing avatar bone masks to blend simultaneous actions and decouple movement locomotion from contextual interactions[cite: 1].</p>
+      <div class="skills-matrix">
+        <div class="skill-card">
+          <h3>🎮 Real-Time & 3D</h3>
+          <div class="skill-pill-list">
+            <span class="skill-pill"><strong>Unity 3D</strong></span>[cite: 1]
+            <span class="skill-pill"><strong>Blender</strong></span>[cite: 1]
+            <span class="skill-pill">Timeline & Cinemachine</span>
+            <span class="skill-pill">Humanoid Rigging</span>
+            <span class="skill-pill">Inverse Kinematics</span>[cite: 1]
+            <span class="skill-pill">Scene Staging & Lighting</span>
+          </div>
         </div>
-        <div class="matrix-card">
-          <h4>⚙️ Dynamic IK Pass</h4>
-          <p>Procedural two-bone Inverse Kinematics for realistic foot placement across terrain steps and bone overrides for in-game wrist-terminal inspects[cite: 1].</p>
+
+        <div class="skill-card">
+          <h3>🎬 Montage & Direction</h3>
+          <div class="skill-pill-list">
+            <span class="skill-pill"><strong>Adobe Premiere Pro</strong></span>[cite: 1]
+            <span class="skill-pill"><strong>After Effects</strong></span>[cite: 1]
+            <span class="skill-pill">DaVinci Resolve</span>[cite: 1]
+            <span class="skill-pill">Broadcast Language</span>
+            <span class="skill-pill">Ilbah Studio Certified (10/10)</span>[cite: 1]
+            <span class="skill-pill">Rhythm & Beat Matching</span>
+          </div>
         </div>
-        <div class="matrix-card">
-          <h4>🎥 Virtual Camera Staging</h4>
-          <p>Carefully composed spatial camera angles, narrow focal lengths, and dynamic volumetric lighting tuned to build atmospheric environmental tension[cite: 1].</p>
+
+        <div class="skill-card">
+          <h3>💻 Engineering Foundation</h3>
+          <div class="skill-pill-list">
+            <span class="skill-pill"><strong>B.Eng. Degree (10/10)</strong></span>[cite: 1]
+            <span class="skill-pill"><strong>M.Sc. VR & Graphics</strong></span>[cite: 1]
+            <span class="skill-pill">C#</span>[cite: 1]
+            <span class="skill-pill">C / C++</span>[cite: 1]
+            <span class="skill-pill">Computer Graphics</span>[cite: 1]
+            <span class="skill-pill">Git / Versioning</span>[cite: 1]
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SHOWCASE 2: EA SPORTS FC (AMBER/GOLD THEME) -->
-    <section class="showcase-card amber-theme scroll-target" id="card-2">
-      <div class="card-top">
-        <div>
-          <div class="project-eyebrow">Broadcast Direction & Live Match Dynamics</div>
-          <h2 class="project-name">EA SPORTS FC — Broadcast Pacing & Replay</h2>
-        </div>
-        <div style="font-family: var(--font-tech); font-size: 0.8rem; color: var(--amber-neon);">
-          MEDIA: FC 26 // COR 352119 CERTIFIED[cite: 1]
-        </div>
-      </div>
-
-      <div class="theater-screen">
-        <div class="view-reticle vr-tl"></div>
-        <div class="view-reticle vr-tr"></div>
-        <div class="view-reticle vr-bl"></div>
-        <div class="view-reticle vr-br"></div>
-
-        <!-- Cand ai linkul Unlisted pe YouTube/Vimeo, inlocuieste div-ul de mai jos cu tagul <iframe> -->
-        <div class="screen-fallback">
-          <div class="pulse-play-btn">▶</div>
-          <div style="font-family: var(--font-tech); font-size: 0.85rem; letter-spacing: 1px;">
-            [ BROADCAST PRESENTATION EDIT EMBED ]
-          </div>
-          <div style="font-size: 0.75rem; color: #5a667d;">Awaiting YouTube / Vimeo Unlisted URL</div>
-        </div>
-      </div>
-
-      <div class="specs-matrix">
-        <div class="matrix-card">
-          <h4>📺 Match Broadcasting Grammar</h4>
-          <p>Curated camera cuts referencing genuine television sports direction: low grass-level lenses, goal celebrations, and player emotion tracking.</p>
-        </div>
-        <div class="matrix-card">
-          <h4>⚡ High-Tension Pacing</h4>
-          <p>Elimination of non-essential transitional beats to focus on ball momentum, dramatic saves, and instantaneous player reactions.</p>
-        </div>
-        <div class="matrix-card">
-          <h4>✂️ Accredited Visual Editing</h4>
-          <p>Groundwork anchored in certified video editing and rhythmic montage techniques accredited by the Ministry of Labor via Ilbah Studio[cite: 1].</p>
-        </div>
-      </div>
-    </section>
-
+    <!-- FOOTER -->
     <footer>
-      <p>IULIAN-MARIAN POPA // BUCHAREST, RO // DEPLOYED VIA GITHUB PAGES</p>
+      <div>IULIAN-MARIAN POPA // ALL RIGHTS RESERVED 2026</div>
+      <div>ENGINEERED VIA GITHUB PAGES</div>
     </footer>
 
   </div>
 
-  <!-- INTERACTIVE SCRIPTS: PARTICLES, 3D TILT & INTERSECTION OBSERVER -->
+  <!-- PARTICLES & PLAYLIST SCRIPT -->
   <script>
-    // 1. PARTICULE DINAMICE FLOATING IN BACKGROUND
-    const canvas = document.getElementById('ambient-canvas');
+    // 1. Interactive Playlist Switcher
+    function switchVideo(title, desc, embedUrl, element) {
+      // Schimba clasa activa
+      document.querySelectorAll('.playlist-item').forEach(el => el.classList.remove('active'));
+      element.classList.add('active');
+
+      // Actualizeaza textele
+      document.getElementById('meta-title').textContent = title;
+      document.getElementById('meta-desc').textContent = desc;
+
+      // Actualizeaza ecranul (sau iframe cand ai link-ul)
+      const target = document.getElementById('main-player-target');
+      if (embedUrl.includes('YOUR_ID_AICI')) {
+        target.innerHTML = `
+          <div class="play-trigger">▶</div>
+          <div style="font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 1px;">${title}</div>
+          <div style="font-size: 0.7rem; color: #5a667d;">Awaiting YouTube / Vimeo Embed URL</div>
+        `;
+      } else {
+        target.innerHTML = `<iframe src="${embedUrl}?autoplay=1" allowfullscreen allow="autoplay"></iframe>`;
+      }
+    }
+
+    // 2. Ambient Floating Dust Particles
+    const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
 
-    function resizeCanvas() {
+    function resize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    window.addEventListener('resize', resize);
+    resize();
 
     class Particle {
-      constructor() {
-        this.reset();
-      }
+      constructor() { this.reset(); }
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 1.6 + 0.4;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.speedY = (Math.random() - 0.5) * 0.3;
-        this.alpha = Math.random() * 0.4 + 0.1;
+        this.size = Math.random() * 1.5 + 0.3;
+        this.speedX = (Math.random() - 0.5) * 0.25;
+        this.speedY = (Math.random() - 0.5) * 0.25;
+        this.alpha = Math.random() * 0.35 + 0.1;
       }
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-          this.reset();
-        }
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
       }
       draw() {
         ctx.fillStyle = `rgba(0, 242, 254, ${this.alpha})`;
@@ -612,69 +777,14 @@
       }
     }
 
-    for (let i = 0; i < 45; i++) {
-      particles.push(new Particle());
-    }
+    for (let i = 0; i < 40; i++) particles.push(new Particle());
 
-    function animateParticles() {
+    function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animateParticles);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
     }
-    animateParticles();
-
-    // 2. GLOW INTERACTIV CARE URMARESTE CURSORUL
-    const auroraMouse = document.getElementById('aurora-mouse');
-    window.addEventListener('mousemove', (e) => {
-      const x = e.clientX - 300;
-      const y = e.clientY - 300;
-      auroraMouse.style.transform = `translate(${x}px, ${y}px)`;
-    });
-
-    // 3. 3D TILT EFFECT PE CARDURILE SHOWCASE
-    function setupTilt(cardId) {
-      const card = document.getElementById(cardId);
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        const rotateX = -(y / rect.height) * 4;
-        const rotateY = (x / rect.width) * 4;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
-      });
-    }
-    setupTilt('card-1');
-    setupTilt('card-2');
-
-    // 4. SCROLL REVEAL (INTERSECTION OBSERVER)
-    const targets = document.querySelectorAll('.scroll-target');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-        }
-      });
-    }, { threshold: 0.1 });
-    targets.forEach(t => observer.observe(t));
-
-    // 5. LIVE TIMECODE LA 60 FPS
-    function updateTimecode() {
-      const now = new Date();
-      const hrs = String(now.getHours()).padStart(2, '0');
-      const mins = String(now.getMinutes()).padStart(2, '0');
-      const secs = String(now.getSeconds()).padStart(2, '0');
-      const frames = String(Math.floor((now.getMilliseconds() / 1000) * 60)).padStart(2, '0');
-      const tc = document.getElementById('live-timecode');
-      if (tc) tc.textContent = `${hrs}:${mins}:${secs}:${frames}`;
-    }
-    setInterval(updateTimecode, 16);
+    animate();
   </script>
-
 </body>
 </html>
