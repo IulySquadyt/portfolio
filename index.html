@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iulian Popa — Game Development & Technical Systems</title>
+  <title>Iulian Popa — Visual Direction & Real-Time Worldbuilding</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,19 +16,19 @@
       /* SECTION 1: CYAN NEON (UNITY & 3D SYSTEMS) */
       --cyan-neon: #00f2fe;
       --cyan-glow: rgba(0, 242, 254, 0.35);
-      --cyan-glass: rgba(8, 20, 28, 0.8);
+      --cyan-glass: rgba(8, 20, 28, 0.85);
       --cyan-border: rgba(0, 242, 254, 0.22);
 
       /* SECTION 2: AMBER / GOLD (VIDEO & BROADCAST) */
       --amber-neon: #ff9900;
       --amber-glow: rgba(255, 153, 0, 0.35);
-      --amber-glass: rgba(26, 17, 10, 0.8);
+      --amber-glass: rgba(26, 17, 10, 0.85);
       --amber-border: rgba(255, 153, 0, 0.22);
 
       /* SECTION 3: VIOLET / INDIGO (CORE SKILLS) */
       --purple-neon: #b05cff;
       --purple-glow: rgba(176, 92, 255, 0.35);
-      --purple-glass: rgba(20, 12, 30, 0.8);
+      --purple-glass: rgba(20, 12, 30, 0.85);
       --purple-border: rgba(176, 92, 255, 0.22);
 
       --text-pure: #ffffff;
@@ -65,14 +65,13 @@
 
     .mouse-glow {
       position: fixed;
-      width: 600px;
-      height: 600px;
+      width: 650px;
+      height: 650px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, transparent 70%);
       pointer-events: none;
       z-index: 1;
       transform: translate(-50%, -50%);
-      transition: width 0.3s, height 0.3s;
     }
 
     .crt-scanlines {
@@ -96,37 +95,33 @@
       padding: 40px 24px 100px;
     }
 
-    /* --- DYNAMIC SCROLL REVEAL (IN & OUT OF VIEW) --- */
+    /* --- SISTEMUL ROBUST DE TRANZITII LA SCROLL --- */
     .scroll-reveal {
-      opacity: 0;
-      filter: blur(8px);
-      transform: translateY(50px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0 !important;
+      filter: blur(12px) !important;
+      transform: translateY(70px) scale(0.96);
+      transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 1.1s cubic-bezier(0.16, 1, 0.3, 1) !important;
       will-change: opacity, transform, filter;
     }
 
     .scroll-reveal.reveal-left {
-      transform: translateX(-50px) translateY(30px);
+      transform: translateX(-70px) translateY(30px) scale(0.96);
     }
 
     .scroll-reveal.reveal-right {
-      transform: translateX(50px) translateY(30px);
+      transform: translateX(70px) translateY(30px) scale(0.96);
     }
 
-    .scroll-reveal.reveal-scale {
-      transform: scale(0.9) translateY(40px);
-    }
-
-    /* STARE VIZIBILA (TRIGGERED CAND E IN FOCUS) */
+    /* STARE VIZIBILA (TRIGGERATA CAND ELEMENTUL INTRA IN ECRAN) */
     .scroll-reveal.is-visible {
-      opacity: 1;
-      filter: blur(0);
-      transform: translateY(0) translateX(0) scale(1);
+      opacity: 1 !important;
+      filter: blur(0) !important;
+      transform: translateY(0) translateX(0) scale(1) !important;
     }
 
-    /* HEADER HUD */
+    /* MASTER HUD HEADER */
     .master-hud {
       display: flex;
       justify-content: space-between;
@@ -165,7 +160,7 @@
       100% { transform: scale(0.95); opacity: 0.8; }
     }
 
-    /* HERO STAGE */
+    /* HERO SECTION (ARTISTIC FIRST) */
     .hero-stage {
       position: relative;
       padding: 55px 44px;
@@ -303,7 +298,7 @@
       font-weight: 700;
     }
 
-    /* SECTION 1: CYAN / 3D */
+    /* SECTION 1: CYAN */
     .section-cyan { margin-bottom: 100px; }
     .section-cyan .section-badge { color: var(--cyan-neon); }
 
@@ -312,15 +307,9 @@
       border: 1px solid var(--cyan-border);
       border-radius: 26px;
       padding: 34px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), inset 0 0 40px rgba(0, 242, 254, 0.03);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(20px);
       transform-style: preserve-3d;
-      transition: border-color 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .cyan-card:hover {
-      border-color: var(--cyan-neon);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px var(--cyan-glow);
     }
 
     .cinema-screen {
@@ -369,12 +358,6 @@
       transition: all 0.3s ease;
     }
 
-    .cyan-card:hover .play-halo {
-      transform: scale(1.15);
-      background: var(--cyan-neon);
-      color: #000;
-    }
-
     .feature-columns {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -386,13 +369,6 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
       padding: 22px;
       border-radius: 14px;
-      transition: all 0.3s ease;
-    }
-
-    .cyan-card .col-box:hover {
-      background: rgba(0, 242, 254, 0.05);
-      border-color: var(--cyan-border);
-      transform: translateY(-3px);
     }
 
     .col-box h4 {
@@ -422,14 +398,8 @@
       border: 1px solid var(--amber-border);
       border-radius: 26px;
       padding: 32px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), inset 0 0 40px rgba(255, 153, 0, 0.03);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(20px);
-      transition: border-color 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .amber-deck:hover {
-      border-color: var(--amber-neon);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px var(--amber-glow);
     }
 
     .amber-deck .play-halo {
@@ -437,11 +407,6 @@
       border-color: var(--amber-neon);
       color: var(--amber-neon);
       box-shadow: 0 0 25px var(--amber-glow);
-    }
-
-    .amber-deck:hover .play-halo {
-      background: var(--amber-neon);
-      color: #000;
     }
 
     .meta-content h3 {
@@ -550,12 +515,11 @@
       padding: 28px;
       backdrop-filter: blur(16px);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-      transition: all 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .spectrum-card:hover {
       border-color: var(--purple-neon);
-      transform: translateY(-4px);
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px var(--purple-glow);
     }
 
@@ -621,27 +585,27 @@
   <div class="layout-container">
     
     <!-- MASTER HUD HEADER -->
-    <div class="master-hud scroll-reveal reveal-scale">
+    <div class="master-hud scroll-reveal">
       <div class="live-status">
         <span class="status-pulse"></span> AVAILABLE // BUCHAREST, RO
       </div>
-      <div>FOCUS: GAME DEVELOPMENT & TECHNICAL ART</div>
+      <div>FOCUS: VISUAL DIRECTION & TECHNICAL ART</div>
       <div id="clock-display">00:00:00:00</div>
     </div>
 
     <!-- HERO PROFILE -->
     <header class="hero-stage scroll-reveal">
-      <div class="hero-tagline-small">// INTERACTIVE 3D & MOTION DESIGN</div>
+      <div class="hero-tagline-small">// VISUAL DIRECTION, 3D & MOTION</div>
       
       <h1 class="hero-author-name">IULIAN POPA</h1>
       
       <div class="hero-role-title">
-        Game Development & Technical Systems
-        <span class="sub-pill">ENGINEERING & VISUAL ARTS</span>
+        Visual Direction & Real-Time Worldbuilding
+        <span class="sub-pill">CINEMATICS & TECHNICAL ART</span>
       </div>
 
       <p class="hero-manifesto">
-        With a solid background in Computer Engineering and ongoing research in Graphics & Virtual Reality, my work explores the intersection between <strong>technical systems and visual storytelling</strong>. While my core focus lies in game architecture, character animation state machines, and procedural mechanics, my practical experience across 3D engines, camera staging, and accredited video editing allows me to adapt naturally to cinematic and real-time presentation workflows.
+        Visual storytelling lives in the balance between <strong>rhythm, composition, and kinetic weight</strong>[cite: 2]. My focus is on creating immersive visual experiences—from orchestrating camera motion and atmospheric staging in 3D engines to directing high-tempo broadcast edits[cite: 1, 2]. Having a rigorous engineering foundation (B.Eng. 10/10, M.Sc. in Graphics & VR) allows me to take creative concepts and implement them directly into complex real-time pipelines without friction[cite: 1].
       </p>
       
       <div class="contact-dock">
@@ -654,12 +618,11 @@
     <!-- SECTION 1: N.E.X.T. (CYAN GLOW DECK) -->
     <section class="section-cyan">
       <div class="section-title-wrap scroll-reveal reveal-left">
-        <h2>01 / Real-Time Systems & Staging</h2>
-        <span class="section-badge">UNITY // TIMELINE // INVERSE KINEMATICS</span>
+        <h2>01 / Real-Time Staging & Animation</h2>
+        <span class="section-badge">UNITY // TIMELINE // INVERSE KINEMATICS</span>[cite: 1]
       </div>
 
-      <!-- Cardul mare se animeaza la scroll -->
-      <div class="cyan-card scroll-reveal reveal-scale" id="tilt-card-1">
+      <div class="cyan-card scroll-reveal">
         <div class="cinema-screen">
           <div class="screen-static">
             <div class="play-halo">▶</div>
@@ -673,15 +636,15 @@
         <div class="feature-columns">
           <div class="col-box scroll-reveal reveal-left">
             <h4>🦴 Layered Animators & Overrides</h4>
-            <p>Architected multi-tier Animator Controller logic using bone masking. Decouples locomotion blend trees from real-time contextual interactions and procedural head-aim tracking.</p>
+            <p>Architected multi-tier Animator Controller logic using bone masking[cite: 1]. Decouples locomotion blend trees from real-time contextual interactions and procedural head-aim tracking[cite: 1].</p>
           </div>
-          <div class="col-box scroll-reveal reveal-scale">
+          <div class="col-box scroll-reveal">
             <h4>⚙️ Procedural Inverse Kinematics</h4>
-            <p>Two-bone IK foot positioning solving uneven terrain geometries and dynamic bone overrides for tactile terminal inspections.</p>
+            <p>Two-bone IK foot positioning solving uneven terrain geometries and dynamic bone overrides for tactile terminal inspections[cite: 1].</p>
           </div>
           <div class="col-box scroll-reveal reveal-right">
             <h4>🎥 Virtual Camera Staging</h4>
-            <p>Engineered dynamic camera staging, volumetric light cues, and narrow depth-of-field passes tuned to sustain spatial tension across multi-level facilities.</p>
+            <p>Engineered dynamic camera staging, volumetric light cues, and narrow depth-of-field passes tuned to sustain spatial tension across multi-level facilities[cite: 1].</p>
           </div>
         </div>
       </div>
@@ -694,8 +657,7 @@
         <span class="section-badge">CURATED EDITING SHOWCASE</span>
       </div>
 
-      <!-- Puntea amber se animeaza la scroll -->
-      <div class="amber-deck scroll-reveal reveal-scale" id="tilt-card-2">
+      <div class="amber-deck scroll-reveal">
         <div>
           <div class="cinema-screen">
             <div class="screen-static" id="active-player-screen">
@@ -782,23 +744,23 @@
         <div class="spectrum-card scroll-reveal reveal-left">
           <h3>🎮 Real-Time & 3D</h3>
           <div class="tag-cloud">
-            <span class="spectrum-tag"><strong>Unity 3D</strong></span>
-            <span class="spectrum-tag"><strong>Blender</strong></span>
+            <span class="spectrum-tag"><strong>Unity 3D</strong></span>[cite: 1]
+            <span class="spectrum-tag"><strong>Blender</strong></span>[cite: 1]
             <span class="spectrum-tag">Timeline & Cinemachine</span>
             <span class="spectrum-tag">Humanoid Rigging</span>
-            <span class="spectrum-tag">Inverse Kinematics (IK)</span>
+            <span class="spectrum-tag">Inverse Kinematics (IK)</span>[cite: 1]
             <span class="spectrum-tag">Scene Staging & Lighting</span>
           </div>
         </div>
 
-        <div class="spectrum-card scroll-reveal reveal-scale">
+        <div class="spectrum-card scroll-reveal">
           <h3>🎬 Montage & Direction</h3>
           <div class="tag-cloud">
-            <span class="spectrum-tag"><strong>Adobe Premiere Pro</strong></span>
-            <span class="spectrum-tag"><strong>After Effects</strong></span>
-            <span class="spectrum-tag">DaVinci Resolve</span>
+            <span class="spectrum-tag"><strong>Adobe Premiere Pro</strong></span>[cite: 1]
+            <span class="spectrum-tag"><strong>After Effects</strong></span>[cite: 1]
+            <span class="spectrum-tag">DaVinci Resolve</span>[cite: 1]
             <span class="spectrum-tag">Broadcast Language</span>
-            <span class="spectrum-tag">Ilbah Studio Certified (10/10)</span>
+            <span class="spectrum-tag">Ilbah Studio Certified (10/10)</span>[cite: 1]
             <span class="spectrum-tag">Beat Matching & Pacing</span>
           </div>
         </div>
@@ -806,57 +768,56 @@
         <div class="spectrum-card scroll-reveal reveal-right">
           <h3>💻 Engineering Foundation</h3>
           <div class="tag-cloud">
-            <span class="spectrum-tag"><strong>B.Eng. Degree (10/10)</strong></span>
-            <span class="spectrum-tag"><strong>M.Sc. VR & Graphics</strong></span>
-            <span class="spectrum-tag">C#</span>
-            <span class="spectrum-tag">C / C++</span>
-            <span class="spectrum-tag">Computer Graphics</span>
-            <span class="spectrum-tag">Git / Versioning</span>
+            <span class="spectrum-tag"><strong>B.Eng. Degree (10/10)</strong></span>[cite: 1]
+            <span class="spectrum-tag"><strong>M.Sc. VR & Graphics</strong></span>[cite: 1]
+            <span class="spectrum-tag">C#</span>[cite: 1]
+            <span class="spectrum-tag">C / C++</span>[cite: 1]
+            <span class="spectrum-tag">Computer Graphics</span>[cite: 1]
+            <span class="spectrum-tag">Git / Versioning</span>[cite: 1]
           </div>
         </div>
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="scroll-reveal reveal-scale">
+    <footer class="scroll-reveal">
       <div>IULIAN-MARIAN POPA // ALL RIGHTS RESERVED 2026</div>
       <div>BUCHAREST, RO // GITHUB PAGES HOSTED</div>
     </footer>
 
   </div>
 
-  <!-- SCRIPT CU OBSERVER BIDIRECTIONAL (ENTER & EXIT FOCUS) -->
+  <!-- SCRIPT CU OBSERVER FLUID PENTRU ENTER & EXIT TRANSITIONS -->
   <script>
-    // OBSERVER ACTIV PENTRU APARITIE SI DISPARITIE DINAMICA
+    // 1. Intersection Observer setat cu prag subtil (garanteaza tranzitia lina pe orice ecran)
     document.addEventListener('DOMContentLoaded', () => {
       const scrollElements = document.querySelectorAll('.scroll-reveal');
       
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // Cand elementul intra in ecran
             entry.target.classList.add('is-visible');
           } else {
-            // Cand elementul paraseste ecranul (dispare inapoi cu blur si miscare)
+            // Elimina clasa cand elementul iese din cadru pentru a declansa fade-out + blur inapoi
             entry.target.classList.remove('is-visible');
           }
         });
       }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.05,
+        rootMargin: '0px 0px -50px 0px'
       });
 
       scrollElements.forEach(el => revealObserver.observe(el));
     });
 
-    // CURSOR SPOTLIGHT
+    // 2. Spotlight activ pe cursor
     const spot = document.getElementById('mouse-spotlight');
     window.addEventListener('mousemove', (e) => {
       spot.style.left = e.clientX + 'px';
       spot.style.top = e.clientY + 'px';
     });
 
-    // SELECTOR PLAYLIST
+    // 3. Comutator dinamic pentru Playlist
     function selectProject(title, desc, url, el) {
       document.querySelectorAll('.pl-entry').forEach(i => i.classList.remove('active'));
       el.classList.add('active');
@@ -876,24 +837,7 @@
       }
     }
 
-    // 3D TILT
-    function applyTilt(cardId) {
-      const card = document.getElementById(cardId);
-      if (!card) return;
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        card.style.transform = `perspective(1000px) rotateX(${-(y / rect.height) * 3.5}deg) rotateY(${(x / rect.width) * 3.5}deg) translateY(-4px)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
-      });
-    }
-    applyTilt('tilt-card-1');
-    applyTilt('tilt-card-2');
-
-    // PARTICULE AMBIENTALE
+    // 4. Particule de adancime pe fundal
     const canvas = document.getElementById('ambient-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -937,7 +881,7 @@
     }
     loop();
 
-    // CLOCK
+    // 5. Ceas Timecode
     function clock() {
       const d = new Date();
       const h = String(d.getHours()).padStart(2, '0');
