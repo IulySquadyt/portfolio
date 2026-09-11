@@ -95,7 +95,7 @@
       padding: 40px 24px 100px;
     }
 
-    /* --- SISTEMUL ROBUST DE TRANZITII LA SCROLL --- */
+    /* SISTEM TRANZITII SCROLL */
     .scroll-reveal {
       opacity: 0 !important;
       filter: blur(12px) !important;
@@ -114,14 +114,13 @@
       transform: translateX(70px) translateY(30px) scale(0.96);
     }
 
-    /* STARE VIZIBILA (TRIGGERATA CAND ELEMENTUL INTRA IN ECRAN) */
     .scroll-reveal.is-visible {
       opacity: 1 !important;
       filter: blur(0) !important;
       transform: translateY(0) translateX(0) scale(1) !important;
     }
 
-    /* MASTER HUD HEADER */
+    /* MASTER HUD */
     .master-hud {
       display: flex;
       justify-content: space-between;
@@ -160,7 +159,7 @@
       100% { transform: scale(0.95); opacity: 0.8; }
     }
 
-    /* HERO SECTION (ARTISTIC FIRST) */
+    /* HERO */
     .hero-stage {
       position: relative;
       padding: 55px 44px;
@@ -605,7 +604,7 @@
       </div>
 
       <p class="hero-manifesto">
-        Visual storytelling lives in the balance between <strong>rhythm, composition, and kinetic weight</strong>[cite: 2]. My focus is on creating immersive visual experiences—from orchestrating camera motion and atmospheric staging in 3D engines to directing high-tempo broadcast edits[cite: 1, 2]. Having a rigorous engineering foundation (B.Eng. 10/10, M.Sc. in Graphics & VR) allows me to take creative concepts and implement them directly into complex real-time pipelines without friction[cite: 1].
+        Visual storytelling lives in the balance between <strong>rhythm, composition, and kinetic weight</strong>[cite: 2]. My focus is on creating immersive visual experiences—from orchestrating camera motion and atmospheric staging in 3D engines to directing high-tempo broadcast edits[cite: 1, 2]. Having a rigorous engineering foundation (B.Eng. in Computer Science, M.Sc. in Graphics & VR) allows me to take creative concepts and implement them directly into complex real-time pipelines without friction[cite: 1].
       </p>
       
       <div class="contact-dock">
@@ -768,7 +767,7 @@
         <div class="spectrum-card scroll-reveal reveal-right">
           <h3>💻 Engineering Foundation</h3>
           <div class="tag-cloud">
-            <span class="spectrum-tag"><strong>B.Eng. Degree (10/10)</strong></span>[cite: 1]
+            <span class="spectrum-tag"><strong>B.Eng. Degree</strong></span>[cite: 1]
             <span class="spectrum-tag"><strong>M.Sc. VR & Graphics</strong></span>[cite: 1]
             <span class="spectrum-tag">C#</span>[cite: 1]
             <span class="spectrum-tag">C / C++</span>[cite: 1]
@@ -787,9 +786,7 @@
 
   </div>
 
-  <!-- SCRIPT CU OBSERVER FLUID PENTRU ENTER & EXIT TRANSITIONS -->
   <script>
-    // 1. Intersection Observer setat cu prag subtil (garanteaza tranzitia lina pe orice ecran)
     document.addEventListener('DOMContentLoaded', () => {
       const scrollElements = document.querySelectorAll('.scroll-reveal');
       
@@ -798,7 +795,6 @@
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
           } else {
-            // Elimina clasa cand elementul iese din cadru pentru a declansa fade-out + blur inapoi
             entry.target.classList.remove('is-visible');
           }
         });
@@ -810,14 +806,12 @@
       scrollElements.forEach(el => revealObserver.observe(el));
     });
 
-    // 2. Spotlight activ pe cursor
     const spot = document.getElementById('mouse-spotlight');
     window.addEventListener('mousemove', (e) => {
       spot.style.left = e.clientX + 'px';
       spot.style.top = e.clientY + 'px';
     });
 
-    // 3. Comutator dinamic pentru Playlist
     function selectProject(title, desc, url, el) {
       document.querySelectorAll('.pl-entry').forEach(i => i.classList.remove('active'));
       el.classList.add('active');
@@ -837,7 +831,6 @@
       }
     }
 
-    // 4. Particule de adancime pe fundal
     const canvas = document.getElementById('ambient-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -881,7 +874,6 @@
     }
     loop();
 
-    // 5. Ceas Timecode
     function clock() {
       const d = new Date();
       const h = String(d.getHours()).padStart(2, '0');
