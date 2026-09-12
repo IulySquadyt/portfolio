@@ -93,26 +93,26 @@
       max-width: 1140px;
       margin: 0 auto;
       padding: 40px 24px 100px;
-      perspective: 1200px;
+      perspective: 1400px;
     }
 
-    /* SCROLL REVEAL (IN & OUT CONTAINER) */
+    /* SCROLL REVEAL (INTRARI SI IESIRI DIN FOCUS) */
     .scroll-reveal {
       opacity: 0;
-      filter: blur(10px);
-      transform: translateY(60px) scale(0.97);
-      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: blur(12px);
+      transform: translateY(65px) scale(0.96);
+      transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.95s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform, filter;
     }
 
     .scroll-reveal.reveal-left {
-      transform: translateX(-60px) translateY(20px) scale(0.97);
+      transform: translateX(-65px) translateY(25px) scale(0.96);
     }
 
     .scroll-reveal.reveal-right {
-      transform: translateX(60px) translateY(20px) scale(0.97);
+      transform: translateX(65px) translateY(25px) scale(0.96);
     }
 
     .scroll-reveal.is-visible {
@@ -121,14 +121,21 @@
       transform: translateY(0) translateX(0) scale(1);
     }
 
-    /* 3D TILT SURFACE INTERIOR (FARA CONFLICT CU SCROLLUL) */
-    .tilt-surface {
+    /* CARDURILE CU TILT 3D INTEGRAT PRIN VARIABILE */
+    .tilt-card {
+      --tilt-rx: 0deg;
+      --tilt-ry: 0deg;
+      --tilt-tz: 0px;
       transform-style: preserve-3d;
-      transition: transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+      transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.35s ease, border-color 0.35s ease;
       will-change: transform;
     }
 
-    /* MASTER HUD */
+    .tilt-card.is-hovered {
+      transform: perspective(1000px) rotateX(var(--tilt-rx)) rotateY(var(--tilt-ry)) translateZ(var(--tilt-tz));
+    }
+
+    /* MASTER HUD HEADER */
     .master-hud {
       display: flex;
       justify-content: space-between;
@@ -375,7 +382,6 @@
       color: #000;
     }
 
-    /* FULL DEMO LINK DOCK */
     .walkthrough-link-wrap {
       display: flex;
       justify-content: flex-end;
@@ -685,40 +691,36 @@
         <span class="section-badge">UNITY // NETCODE // MULTIPLAYER ARCHITECTURE</span>
       </div>
 
-      <!-- WRAPPER SCROLL REVEAL -->
-      <div class="scroll-reveal">
-        <!-- CARD INTERN CU TILT 3D ACTIV -->
-        <div class="cyan-card tilt-surface" data-tilt="card">
-          <div class="cinema-screen">
-            <div class="screen-static">
-              <div class="play-halo">▶</div>
-              <div style="font-family: var(--font-code); font-size: 0.85rem; letter-spacing: 1px;">
-                [ N.E.X.T. — MULTIPLAYER GAMEPLAY & SYSTEMS REEL (60-90s) ]
-              </div>
-              <div style="font-size: 0.72rem; color: #5a667d;">Awaiting YouTube / Vimeo Unlisted Embed</div>
+      <!-- CARD CU AMBELE EFECTE FUNCTIONALE (SCROLL REVEAL + 3D TILT HOVER) -->
+      <div class="cyan-card tilt-card scroll-reveal">
+        <div class="cinema-screen">
+          <div class="screen-static">
+            <div class="play-halo">▶</div>
+            <div style="font-family: var(--font-code); font-size: 0.85rem; letter-spacing: 1px;">
+              [ N.E.X.T. — MULTIPLAYER GAMEPLAY & SYSTEMS REEL (60-90s) ]
             </div>
+            <div style="font-size: 0.72rem; color: #5a667d;">Awaiting YouTube / Vimeo Unlisted Embed</div>
           </div>
+        </div>
 
-          <!-- LINK CATRE DEMO-UL COMPLET DE 4 MINUTE -->
-          <div class="walkthrough-link-wrap">
-            <a href="https://youtube.com" target="_blank" class="walkthrough-btn">
-              Watch Full 4-Minute Technical Breakdown ↗
-            </a>
+        <div class="walkthrough-link-wrap">
+          <a href="https://youtube.com" target="_blank" class="walkthrough-btn">
+            Watch Full 4-Minute Technical Breakdown ↗
+          </a>
+        </div>
+
+        <div class="feature-columns">
+          <div class="col-box">
+            <h4>Multiplayer State Replication</h4>
+            <p>Architected client-server synchronization using Netcode. Manages networked player states, item interactions, and cooperative terminal logic across distributed sessions.</p>
           </div>
-
-          <div class="feature-columns">
-            <div class="col-box">
-              <h4>Multiplayer State Replication</h4>
-              <p>Architected client-server synchronization using Netcode. Manages networked player states, item interactions, and cooperative terminal logic across distributed sessions.</p>
-            </div>
-            <div class="col-box">
-              <h4>Procedural IK & Foot Grounding</h4>
-              <p>Dynamic two-bone Inverse Kinematics solving foot orientation on uneven steps and slopes, ensuring physical grounding of networked character avatars.</p>
-            </div>
-            <div class="col-box">
-              <h4>Layered Animation Logic</h4>
-              <p>Decoupled upper-body item holds, terminal inspects, and look-at targets from lower-body locomotion blend trees using multi-tier Animator bone masking.</p>
-            </div>
+          <div class="col-box">
+            <h4>Procedural IK & Foot Grounding</h4>
+            <p>Dynamic two-bone Inverse Kinematics solving foot orientation on uneven steps and slopes, ensuring physical grounding of networked character avatars.</p>
+          </div>
+          <div class="col-box">
+            <h4>Layered Animation Logic</h4>
+            <p>Decoupled upper-body item holds, terminal inspects, and look-at targets from lower-body locomotion blend trees using multi-tier Animator bone masking.</p>
           </div>
         </div>
       </div>
@@ -731,83 +733,77 @@
         <span class="section-badge">ADOBE PREMIERE PRO // CERTIFIED EDITOR</span>
       </div>
 
-      <!-- WRAPPER SCROLL REVEAL -->
-      <div class="scroll-reveal">
-        <!-- CARD INTERN CU TILT 3D ACTIV -->
-        <div class="amber-deck tilt-surface" data-tilt="card">
-          <div>
-            <div class="cinema-screen">
-              <div class="screen-static" id="active-player-screen">
-                <div class="play-halo">▶</div>
-                <div style="font-family: var(--font-code); font-size: 0.82rem; letter-spacing: 1px;" id="player-label">
-                  DYNAMIC RHYTHM & PACING STUDY
-                </div>
-                <div style="font-size: 0.72rem; color: #5a667d;">Select any work from the playlist to preview</div>
+      <!-- CARD CU AMBELE EFECTE FUNCTIONALE (SCROLL REVEAL + 3D TILT HOVER) -->
+      <div class="amber-deck tilt-card scroll-reveal">
+        <div>
+          <div class="cinema-screen">
+            <div class="screen-static" id="active-player-screen">
+              <div class="play-halo">▶</div>
+              <div style="font-family: var(--font-code); font-size: 0.82rem; letter-spacing: 1px;" id="player-label">
+                DYNAMIC RHYTHM & PACING STUDY
               </div>
-            </div>
-
-            <div class="meta-content">
-              <h3 id="project-headline">Dynamic Rhythm & Pacing Study</h3>
-              <p id="project-description">
-                High-energy montage exploring audio-visual synchronization, dynamic impact cuts, motion continuity, and selective speed ramping.
-              </p>
+              <div style="font-size: 0.72rem; color: #5a667d;">Select any work from the playlist to preview</div>
             </div>
           </div>
 
-          <div class="playlist-wrapper">
-            <div class="pl-header">
-              <span>Selected Works</span>
-              <span>Playlist (3 Works)</span>
+          <div class="meta-content">
+            <h3 id="project-headline">Dynamic Rhythm & Pacing Study</h3>
+            <p id="project-description">
+              High-energy montage exploring audio-visual synchronization, dynamic impact cuts, motion continuity, and selective speed ramping.
+            </p>
+          </div>
+        </div>
+
+        <div class="playlist-wrapper">
+          <div class="pl-header">
+            <span>Selected Works</span>
+            <span>Playlist (3 Works)</span>
+          </div>
+
+          <div class="pl-list">
+            <div class="pl-entry active" 
+                 onclick="selectProject(
+                   'Dynamic Rhythm & Pacing Study',
+                   'High-energy montage exploring audio-visual synchronization, dynamic impact cuts, motion continuity, and selective speed ramping.',
+                   'https://www.youtube.com/embed/YOUR_ID_AICI',
+                   this
+                 )">
+              <div class="entry-badge">RHYTHM</div>
+              <div class="entry-text">
+                <h5>High-Tempo Montage</h5>
+                <span>Audio-Visual Sync</span>
+              </div>
+              <div class="entry-time">1:00</div>
             </div>
 
-            <div class="pl-list">
-              <!-- Proiect 1 -->
-              <div class="pl-entry active" 
-                   onclick="selectProject(
-                     'Dynamic Rhythm & Pacing Study',
-                     'High-energy montage exploring audio-visual synchronization, dynamic impact cuts, motion continuity, and selective speed ramping.',
-                     'https://www.youtube.com/embed/YOUR_ID_AICI',
-                     this
-                   )">
-                <div class="entry-badge">RHYTHM</div>
-                <div class="entry-text">
-                  <h5>High-Tempo Montage</h5>
-                  <span>Audio-Visual Sync</span>
-                </div>
-                <div class="entry-time">1:00</div>
+            <div class="pl-entry" 
+                 onclick="selectProject(
+                   'Visual Motion & Typographic Flow',
+                   'Rhythmic showcase focusing on color grading passes, seamless transitions, typography animation, and clean visual momentum built in Premiere Pro and After Effects.',
+                   'https://www.youtube.com/embed/YOUR_ID_AICI',
+                   this
+                 )">
+              <div class="entry-badge">MOTION</div>
+              <div class="entry-text">
+                <h5>Motion & Typo Design</h5>
+                <span>Visual Transitions</span>
               </div>
+              <div class="entry-time">0:45</div>
+            </div>
 
-              <!-- Proiect 2 -->
-              <div class="pl-entry" 
-                   onclick="selectProject(
-                     'Visual Motion & Typographic Flow',
-                     'Rhythmic showcase focusing on color grading passes, seamless transitions, typography animation, and clean visual momentum built in Premiere Pro and After Effects.',
-                     'https://www.youtube.com/embed/YOUR_ID_AICI',
-                     this
-                   )">
-                <div class="entry-badge">MOTION</div>
-                <div class="entry-text">
-                  <h5>Motion & Typo Design</h5>
-                  <span>Visual Transitions</span>
-                </div>
-                <div class="entry-time">0:45</div>
+            <div class="pl-entry" 
+                 onclick="selectProject(
+                   'Atmospheric Continuity & Sound Flow',
+                   'Narrative-driven sequence emphasizing scene continuity, spatial sound design, gradual tension-building, and accredited editing grammar.',
+                   'https://www.youtube.com/embed/YOUR_ID_AICI',
+                   this
+                 )">
+              <div class="entry-badge">NARRATIVE</div>
+              <div class="entry-text">
+                <h5>Atmospheric Continuity</h5>
+                <span>Pacing & Sound Design</span>
               </div>
-
-              <!-- Proiect 3 -->
-              <div class="pl-entry" 
-                   onclick="selectProject(
-                     'Atmospheric Continuity & Sound Flow',
-                     'Narrative-driven sequence emphasizing scene continuity, spatial sound design, gradual tension-building, and accredited editing grammar.',
-                     'https://www.youtube.com/embed/YOUR_ID_AICI',
-                     this
-                   )">
-                <div class="entry-badge">NARRATIVE</div>
-                <div class="entry-text">
-                  <h5>Atmospheric Continuity</h5>
-                  <span>Pacing & Sound Design</span>
-                </div>
-                <div class="entry-time">1:15</div>
-              </div>
+              <div class="entry-time">1:15</div>
             </div>
           </div>
         </div>
@@ -822,45 +818,39 @@
       </div>
 
       <div class="purple-grid">
-        <div class="scroll-reveal reveal-left">
-          <div class="spectrum-card tilt-surface" data-tilt="card">
-            <h3>Real-Time & 3D</h3>
-            <div class="tag-cloud">
-              <span class="spectrum-tag"><strong>Unity 3D</strong></span>
-              <span class="spectrum-tag"><strong>Blender</strong></span>
-              <span class="spectrum-tag">Timeline & Cinemachine</span>
-              <span class="spectrum-tag">Humanoid Rigging</span>
-              <span class="spectrum-tag">Inverse Kinematics (IK)</span>
-              <span class="spectrum-tag">Scene Staging & Lighting</span>
-            </div>
+        <div class="spectrum-card tilt-card scroll-reveal reveal-left">
+          <h3>Real-Time & 3D</h3>
+          <div class="tag-cloud">
+            <span class="spectrum-tag"><strong>Unity 3D</strong></span>
+            <span class="spectrum-tag"><strong>Blender</strong></span>
+            <span class="spectrum-tag">Timeline & Cinemachine</span>
+            <span class="spectrum-tag">Humanoid Rigging</span>
+            <span class="spectrum-tag">Inverse Kinematics (IK)</span>
+            <span class="spectrum-tag">Scene Staging & Lighting</span>
           </div>
         </div>
 
-        <div class="scroll-reveal">
-          <div class="spectrum-card tilt-surface" data-tilt="card">
-            <h3>Montage & Direction</h3>
-            <div class="tag-cloud">
-              <span class="spectrum-tag"><strong>Adobe Premiere Pro</strong></span>
-              <span class="spectrum-tag"><strong>After Effects</strong></span>
-              <span class="spectrum-tag">DaVinci Resolve</span>
-              <span class="spectrum-tag">Broadcast Language</span>
-              <span class="spectrum-tag">Ilbah Studio Certified (10/10)</span>
-              <span class="spectrum-tag">Beat Matching & Pacing</span>
-            </div>
+        <div class="spectrum-card tilt-card scroll-reveal">
+          <h3>Montage & Direction</h3>
+          <div class="tag-cloud">
+            <span class="spectrum-tag"><strong>Adobe Premiere Pro</strong></span>
+            <span class="spectrum-tag"><strong>After Effects</strong></span>
+            <span class="spectrum-tag">DaVinci Resolve</span>
+            <span class="spectrum-tag">Broadcast Language</span>
+            <span class="spectrum-tag">Ilbah Studio Certified (10/10)</span>
+            <span class="spectrum-tag">Beat Matching & Pacing</span>
           </div>
         </div>
 
-        <div class="scroll-reveal reveal-right">
-          <div class="spectrum-card tilt-surface" data-tilt="card">
-            <h3>Engineering Foundation</h3>
-            <div class="tag-cloud">
-              <span class="spectrum-tag"><strong>B.Eng. Degree</strong></span>
-              <span class="spectrum-tag"><strong>M.Sc. VR & Graphics</strong></span>
-              <span class="spectrum-tag">C#</span>
-              <span class="spectrum-tag">C / C++</span>
-              <span class="spectrum-tag">Computer Graphics</span>
-              <span class="spectrum-tag">Git / Versioning</span>
-            </div>
+        <div class="spectrum-card tilt-card scroll-reveal reveal-right">
+          <h3>Engineering Foundation</h3>
+          <div class="tag-cloud">
+            <span class="spectrum-tag"><strong>B.Eng. Degree</strong></span>
+            <span class="spectrum-tag"><strong>M.Sc. VR & Graphics</strong></span>
+            <span class="spectrum-tag">C#</span>
+            <span class="spectrum-tag">C / C++</span>
+            <span class="spectrum-tag">Computer Graphics</span>
+            <span class="spectrum-tag">Git / Versioning</span>
           </div>
         </div>
       </div>
@@ -888,30 +878,38 @@
           }
         });
       }, {
-        threshold: 0.05,
+        threshold: 0.06,
         rootMargin: '0px 0px -40px 0px'
       });
 
       scrollElements.forEach(el => revealObserver.observe(el));
     });
 
-    // 2. 3D TILT HOVER PE TOATE CARDURILE (.tilt-surface)
-    const tiltCards = document.querySelectorAll('.tilt-surface');
+    // 2. 3D TILT PE BAZA DE VARIABILE CSS (FARA CONFLICT CU TRANZITIA LA SCROLL)
+    const tiltCards = document.querySelectorAll('.tilt-card');
     tiltCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.classList.add('is-hovered');
+      });
+
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
         
-        // Calculeaza unghiurile de inclinare
-        const rotateX = -(y / (rect.height / 2)) * 5; // max 5 grade
-        const rotateY = (x / (rect.width / 2)) * 5;
+        const rotateX = -(y / (rect.height / 2)) * 4.5;
+        const rotateY = (x / (rect.width / 2)) * 4.5;
 
-        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(8px)`;
+        card.style.setProperty('--tilt-rx', `${rotateX.toFixed(2)}deg`);
+        card.style.setProperty('--tilt-ry', `${rotateY.toFixed(2)}deg`);
+        card.style.setProperty('--tilt-tz', '8px');
       });
 
       card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        card.style.setProperty('--tilt-rx', '0deg');
+        card.style.setProperty('--tilt-ry', '0deg');
+        card.style.setProperty('--tilt-tz', '0px');
+        card.classList.remove('is-hovered');
       });
     });
 
