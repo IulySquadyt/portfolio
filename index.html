@@ -82,7 +82,7 @@
       height: 100%;
       background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
       background-size: 100% 4px;
-      z-index: 99;
+      z-index: 2; /* Coborat sub ecranele video */
       pointer-events: none;
       opacity: 0.35;
     }
@@ -317,15 +317,17 @@
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 35px var(--cyan-glow);
     }
 
+    /* CINEMA SCREEN: IZOLAT COMPLET FARA EFECTE PARAZITE */
     .cinema-screen {
       position: relative;
+      z-index: 50; /* Peste scanlines si glow */
       padding-bottom: 56.25%;
       border-radius: 16px;
       overflow: hidden;
-      background: #020305;
+      background: #000000;
       margin-bottom: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
     }
 
     .cinema-screen iframe,
@@ -336,6 +338,7 @@
       width: 100%;
       height: 100%;
       border: none;
+      background: #000000;
     }
 
     .screen-static {
@@ -345,7 +348,6 @@
       justify-content: center;
       gap: 14px;
       color: var(--text-muted);
-      background: radial-gradient(circle at center, #0f1824 0%, #030407 100%);
     }
 
     .play-halo {
@@ -450,19 +452,6 @@
     .amber-deck:hover {
       border-color: var(--amber-neon);
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 35px var(--amber-glow);
-    }
-
-    .amber-deck .play-halo {
-      background: rgba(255, 153, 0, 0.1);
-      border-color: var(--amber-neon);
-      color: var(--amber-neon);
-      box-shadow: 0 0 25px var(--amber-glow);
-    }
-
-    .amber-deck:hover .play-halo {
-      background: var(--amber-neon);
-      color: #000;
-      transform: scale(1.1);
     }
 
     .meta-content h3 {
@@ -720,14 +709,15 @@
 
       <div class="amber-deck scroll-reveal">
         <div>
-          <div class="cinema-screen">
-            <div class="screen-static" id="active-player-screen">
-              <div class="play-halo">▶</div>
-              <div style="font-family: var(--font-code); font-size: 0.82rem; letter-spacing: 1px;" id="player-label">
-                FAST-PACED GAMEPLAY EDIT
-              </div>
-              <div style="font-size: 0.72rem; color: #5a667d;">Select any work from the playlist to preview</div>
-            </div>
+          <!-- PLAYERUL INCARCA DIRECT PRIMUL VIDEO, CURAT SI FARA FILTRE -->
+          <div class="cinema-screen" id="active-player-screen">
+            <iframe 
+              src="https://www.youtube.com/embed/6zJJRIUp-ro" 
+              title="Fast-Paced Gameplay Edit" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerpolicy="strict-origin-when-cross-origin" 
+              allowfullscreen>
+            </iframe>
           </div>
 
           <div class="meta-content">
@@ -889,12 +879,22 @@
       const screen = document.getElementById('active-player-screen');
       if (url.includes('YOUR_ID_AICI')) {
         screen.innerHTML = `
-          <div class="play-halo">▶</div>
-          <div style="font-family: var(--font-code); font-size: 0.82rem; letter-spacing: 1px;">${title}</div>
-          <div style="font-size: 0.72rem; color: #5a667d;">Awaiting YouTube / Vimeo Embed URL</div>
+          <div class="screen-static">
+            <div class="play-halo">▶</div>
+            <div style="font-family: var(--font-code); font-size: 0.82rem; letter-spacing: 1px;">${title}</div>
+            <div style="font-size: 0.72rem; color: #5a667d;">Awaiting YouTube / Vimeo Embed URL</div>
+          </div>
         `;
       } else {
-        screen.innerHTML = `<iframe src="${url}?autoplay=1" allowfullscreen allow="autoplay"></iframe>`;
+        screen.innerHTML = `
+          <iframe 
+            src="${url}?autoplay=1" 
+            title="${title}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+          </iframe>
+        `;
       }
     }
 
