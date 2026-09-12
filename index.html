@@ -93,39 +93,31 @@
       max-width: 1140px;
       margin: 0 auto;
       padding: 40px 24px 100px;
-      perspective: 1400px;
     }
 
-    /* SISTEM UNIFICAT SCROLL REVEAL */
+    /* SCROLL REVEAL ENGINE */
     .scroll-reveal {
       opacity: 0;
       filter: blur(12px);
-      transform: translateY(65px) scale(0.96);
-      transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(60px) scale(0.96);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform, filter;
     }
 
     .scroll-reveal.reveal-left {
-      transform: translateX(-65px) translateY(25px) scale(0.96);
+      transform: translateX(-60px) translateY(20px) scale(0.96);
     }
 
     .scroll-reveal.reveal-right {
-      transform: translateX(65px) translateY(25px) scale(0.96);
+      transform: translateX(60px) translateY(20px) scale(0.96);
     }
 
     .scroll-reveal.is-visible {
       opacity: 1;
       filter: blur(0);
       transform: translateY(0) translateX(0) scale(1);
-    }
-
-    /* CARD TILT ENGINE: nu suprascrie proprietatea transform a containerului de scroll */
-    .tilt-card {
-      transform-style: preserve-3d;
-      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.35s ease, border-color 0.35s ease;
-      will-change: transform;
     }
 
     /* MASTER HUD HEADER */
@@ -316,6 +308,7 @@
       padding: 34px;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(20px);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .cyan-card:hover {
@@ -451,6 +444,7 @@
       padding: 32px;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(20px);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .amber-deck:hover {
@@ -577,17 +571,13 @@
       padding: 28px;
       backdrop-filter: blur(16px);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-      /* Se comporta direct ca scroll-reveal si tilt-card fuzionate */
-      transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.95s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.2s cubic-bezier(0.2, 0.8, 0.4, 1),
-                  box-shadow 0.35s ease,
-                  border-color 0.35s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     }
 
     .spectrum-card:hover {
       border-color: var(--purple-neon);
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px var(--purple-glow);
+      transform: translateY(-4px);
     }
 
     .spectrum-card h3 {
@@ -689,7 +679,7 @@
         <span class="section-badge">UNITY // NETCODE // MULTIPLAYER ARCHITECTURE</span>
       </div>
 
-      <div class="cyan-card tilt-card scroll-reveal">
+      <div class="cyan-card scroll-reveal">
         <div class="cinema-screen">
           <div class="screen-static">
             <div class="play-halo">▶</div>
@@ -730,7 +720,7 @@
         <span class="section-badge">ADOBE PREMIERE PRO // CERTIFIED EDITOR</span>
       </div>
 
-      <div class="amber-deck tilt-card scroll-reveal">
+      <div class="amber-deck scroll-reveal">
         <div>
           <div class="cinema-screen">
             <div class="screen-static" id="active-player-screen">
@@ -814,8 +804,7 @@
       </div>
 
       <div class="purple-grid">
-        <!-- FIECARE CARD ESTE ATAT SCROLL-REVEAL CAT SI TILT-CARD (FARA WRAPPERE INTERMEDIARE CONFLICTUALE) -->
-        <div class="spectrum-card tilt-card scroll-reveal reveal-left">
+        <div class="spectrum-card scroll-reveal reveal-left">
           <h3>Real-Time & 3D</h3>
           <div class="tag-cloud">
             <span class="spectrum-tag"><strong>Unity 3D</strong></span>
@@ -827,7 +816,7 @@
           </div>
         </div>
 
-        <div class="spectrum-card tilt-card scroll-reveal">
+        <div class="spectrum-card scroll-reveal">
           <h3>Montage & Direction</h3>
           <div class="tag-cloud">
             <span class="spectrum-tag"><strong>Adobe Premiere Pro</strong></span>
@@ -839,7 +828,7 @@
           </div>
         </div>
 
-        <div class="spectrum-card tilt-card scroll-reveal reveal-right">
+        <div class="spectrum-card scroll-reveal reveal-right">
           <h3>Engineering Foundation</h3>
           <div class="tag-cloud">
             <span class="spectrum-tag"><strong>B.Eng. Degree</strong></span>
@@ -862,7 +851,7 @@
   </div>
 
   <script>
-    // 1. SCROLL REVEAL (INTERSECTION OBSERVER BIDIRECTIONAL)
+    // SCROLL REVEAL (INTERSECTION OBSERVER BIDIRECTIONAL)
     document.addEventListener('DOMContentLoaded', () => {
       const scrollElements = document.querySelectorAll('.scroll-reveal');
       
@@ -882,41 +871,14 @@
       scrollElements.forEach(el => revealObserver.observe(el));
     });
 
-    // 2. 3D TILT ENGINE: APLICAT FLUID CAND CARDUL ESTE VIZIBIL
-    const tiltCards = document.querySelectorAll('.tilt-card');
-    tiltCards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        // Activeaza tilt doar daca elementul este deja vizibil pe ecran
-        if (!card.classList.contains('is-visible')) return;
-
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        const rotateX = -(y / (rect.height / 2)) * 4.5;
-        const rotateY = (x / (rect.width / 2)) * 4.5;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(8px)`;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        // Cand cursorul pleaca, revine lin la starea neutră fără a strica scrollul
-        if (card.classList.contains('is-visible')) {
-          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
-        } else {
-          card.style.transform = '';
-        }
-      });
-    });
-
-    // 3. SPOTLIGHT CURSOR
+    // SPOTLIGHT CURSOR
     const spot = document.getElementById('mouse-spotlight');
     window.addEventListener('mousemove', (e) => {
       spot.style.left = e.clientX + 'px';
       spot.style.top = e.clientY + 'px';
     });
 
-    // 4. PLAYLIST SELECTOR
+    // PLAYLIST SELECTOR
     function selectProject(title, desc, url, el) {
       document.querySelectorAll('.pl-entry').forEach(i => i.classList.remove('active'));
       el.classList.add('active');
@@ -936,7 +898,7 @@
       }
     }
 
-    // 5. CANVAS PARTICLES
+    // CANVAS PARTICLES
     const canvas = document.getElementById('ambient-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -980,7 +942,7 @@
     }
     loop();
 
-    // 6. CLOCK
+    // CLOCK TIMECODE
     function clock() {
       const d = new Date();
       const h = String(d.getHours()).padStart(2, '0');
