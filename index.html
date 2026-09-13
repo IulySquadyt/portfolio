@@ -19,13 +19,19 @@
       --cyan-glass: rgba(8, 20, 28, 0.85);
       --cyan-border: rgba(0, 242, 254, 0.22);
 
-      /* SECTION 2: AMBER / GOLD */
+      /* SECTION 2: EMERALD / MINT (CINEMATICS) */
+      --mint-neon: #00ffaa;
+      --mint-glow: rgba(0, 255, 170, 0.35);
+      --mint-glass: rgba(6, 24, 18, 0.85);
+      --mint-border: rgba(0, 255, 170, 0.22);
+
+      /* SECTION 3: AMBER / GOLD */
       --amber-neon: #ff9900;
       --amber-glow: rgba(255, 153, 0, 0.35);
       --amber-glass: rgba(26, 17, 10, 0.85);
       --amber-border: rgba(255, 153, 0, 0.22);
 
-      /* SECTION 3: VIOLET / INDIGO */
+      /* SECTION 4: VIOLET / INDIGO */
       --purple-neon: #b05cff;
       --purple-glow: rgba(176, 92, 255, 0.35);
       --purple-glass: rgba(20, 12, 30, 0.85);
@@ -46,7 +52,7 @@
 
     html, body {
       max-width: 100vw;
-      overflow-x: hidden; /* Previne scroll-ul orizontal pe mobil */
+      overflow-x: hidden;
     }
 
     body {
@@ -187,7 +193,7 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--cyan-neon), var(--purple-neon), transparent);
+      background: linear-gradient(90deg, transparent, var(--cyan-neon), var(--mint-neon), var(--purple-neon), transparent);
     }
 
     .hero-tagline-small {
@@ -308,7 +314,7 @@
       text-align: right;
     }
 
-    /* SECTION 1: CYAN */
+    /* SECTION 1: CYAN (N.E.X.T.) */
     .section-cyan { margin-bottom: 90px; }
     .section-cyan .section-badge { color: var(--cyan-neon); }
 
@@ -326,6 +332,46 @@
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 35px var(--cyan-glow);
     }
 
+    /* SECTION 2: MINT (IN-ENGINE CINEMATICS) */
+    .section-mint { margin-bottom: 90px; }
+    .section-mint .section-badge { color: var(--mint-neon); }
+
+    .mint-card {
+      background: var(--mint-glass);
+      border: 1px solid var(--mint-border);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(20px);
+    }
+
+    .mint-card:hover {
+      border-color: var(--mint-neon);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 35px var(--mint-glow);
+    }
+
+    .mint-card .play-halo {
+      background: rgba(0, 255, 170, 0.1);
+      border-color: var(--mint-neon);
+      color: var(--mint-neon);
+      box-shadow: 0 0 25px var(--mint-glow);
+    }
+
+    .mint-card:hover .play-halo {
+      background: var(--mint-neon);
+      color: #000;
+    }
+
+    .mint-card .col-box h4 {
+      color: var(--mint-neon);
+    }
+
+    .mint-card .col-box:hover {
+      background: rgba(0, 255, 170, 0.05);
+      border-color: var(--mint-border);
+    }
+
+    /* CINEMA SCREEN */
     .cinema-screen {
       position: relative;
       z-index: 50;
@@ -443,7 +489,7 @@
       line-height: 1.6;
     }
 
-    /* SECTION 2: AMBER / EDITING */
+    /* SECTION 3: AMBER / EDITING */
     .section-amber { margin-bottom: 90px; }
     .section-amber .section-badge { color: var(--amber-neon); }
 
@@ -554,7 +600,7 @@
       padding-right: 4px;
     }
 
-    /* SECTION 3: PURPLE (CORE CAPABILITIES) */
+    /* SECTION 4: PURPLE (CORE CAPABILITIES) */
     .section-purple { margin-bottom: 80px; }
     .section-purple .section-badge { color: var(--purple-neon); }
 
@@ -626,9 +672,7 @@
       flex-wrap: wrap;
     }
 
-    /* =========================================================
-       MEDIA QUERIES AVANSATE PENTRU TABLETA & TELEFON
-       ========================================================= */
+    /* MEDIA QUERIES */
     @media (max-width: 860px) {
       .amber-deck {
         grid-template-columns: 1fr;
@@ -644,11 +688,10 @@
         margin-bottom: 70px;
       }
 
-      .cyan-card, .amber-deck {
+      .cyan-card, .mint-card, .amber-deck {
         padding: 24px;
       }
 
-      /* Dezactivam transform-urile laterale pe mobil pentru a preveni overflow-ul orizontal */
       .scroll-reveal.reveal-left,
       .scroll-reveal.reveal-right {
         transform: translateY(40px) scale(0.98);
@@ -663,11 +706,6 @@
         padding: 16px 20px;
         margin-bottom: 35px;
         gap: 8px;
-      }
-
-      .master-hud > div:nth-child(2) {
-        font-size: 0.72rem;
-        opacity: 0.8;
       }
 
       .hero-stage {
@@ -696,7 +734,7 @@
         justify-content: center;
       }
 
-      .cyan-card, .amber-deck {
+      .cyan-card, .mint-card, .amber-deck {
         padding: 18px;
         border-radius: 20px;
       }
@@ -801,9 +839,10 @@
           </div>
         </div>
 
+        <!-- BUTON ACTUALIZAT: 4-MINUTE DEMO -->
         <div class="walkthrough-link-wrap">
           <a href="https://youtube.com" target="_blank" class="walkthrough-btn">
-            Watch Full 4-Minute Technical Breakdown ↗
+            Watch Full 4-Minute Demo (Presented at Thesis Defense) ↗
           </a>
         </div>
 
@@ -824,10 +863,45 @@
       </div>
     </section>
 
-    <!-- SECTION 2: EDITING & MOTION SHOWCASE -->
+    <!-- SECTION 2: IN-ENGINE CINEMATICS (NOUL MINI-PROIECT) -->
+    <section class="section-mint">
+      <div class="section-title-wrap scroll-reveal reveal-left">
+        <h2>02 / In-Engine Cinematics & Camera Staging</h2>
+        <span class="section-badge">VIRTUAL CAMERAS // CINEMACHINE // TIMELINE</span>
+      </div>
+
+      <div class="mint-card scroll-reveal">
+        <div class="cinema-screen">
+          <div class="screen-static">
+            <div class="play-halo">▶</div>
+            <div style="font-family: var(--font-code); font-size: 0.85rem; letter-spacing: 1px; color: var(--mint-neon);">
+              [ CINEMATIC SEQUENCE — THE TUNNEL WALKOUT (20-25s) ]
+            </div>
+            <div style="font-size: 0.72rem; color: #5a667d;">In Production • Awaiting In-Engine Render Embed</div>
+          </div>
+        </div>
+
+        <div class="feature-columns">
+          <div class="col-box">
+            <h4>Virtual Cameras & Focal Lengths</h4>
+            <p>Orchestrated a 4-shot sequence using Cinemachine Virtual Cameras, contrasting low-angle wide lenses (20mm) for physical weight with narrow telephoto lenses (85mm) for character focus.</p>
+          </div>
+          <div class="col-box">
+            <h4>Timeline Sequencing & Blends</h4>
+            <p>Directed character locomotion and camera tracks synchronously on Unity Timeline, implementing subtle camera cuts and blend transitions to mirror broadcast pacing.</p>
+          </div>
+          <div class="col-box">
+            <h4>Physical Depth of Field & Staging</h4>
+            <p>Utilized real-time Post-Processing Volumes to execute dynamic rack focus between environmental background elements and character close-ups, complemented by high-contrast rim lighting.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: EDITING SHOWCASE -->
     <section class="section-amber">
       <div class="section-title-wrap scroll-reveal reveal-right">
-        <h2>02 / Editing Showcase</h2>
+        <h2>03 / Editing Showcase</h2>
         <span class="section-badge">ADOBE PREMIERE PRO // CERTIFIED EDITOR</span>
       </div>
 
@@ -910,10 +984,10 @@
       </div>
     </section>
 
-    <!-- SECTION 3: PRODUCTION SPECTRUM -->
+    <!-- SECTION 4: PRODUCTION SPECTRUM -->
     <section class="section-purple">
       <div class="section-title-wrap scroll-reveal reveal-left">
-        <h2>03 / Production Spectrum</h2>
+        <h2>04 / Production Spectrum</h2>
         <span class="section-badge">FOUNDATIONS & PRACTICED TOOLS</span>
       </div>
 
@@ -931,10 +1005,10 @@
         </div>
 
         <div class="spectrum-card scroll-reveal">
-          <h3>Game Dev (Thesis)</h3>
+          <h3>Game Dev & Real-Time</h3>
           <div class="tag-cloud">
             <span class="spectrum-tag"><strong>Unity 3D</strong></span>
-            <span class="spectrum-tag"><strong>C# Scripting</strong></span>
+            <span class="spectrum-tag"><strong>Cinemachine & Timeline</strong></span>
             <span class="spectrum-tag">Netcode Basics</span>
             <span class="spectrum-tag">Two-Bone IK</span>
             <span class="spectrum-tag">Animator Layers & Masks</span>
@@ -984,7 +1058,7 @@
       scrollElements.forEach(el => revealObserver.observe(el));
     });
 
-    // SPOTLIGHT CURSOR (activ doar pe desktop)
+    // SPOTLIGHT CURSOR
     const spot = document.getElementById('mouse-spotlight');
     if (window.matchMedia('(pointer: fine)').matches) {
       window.addEventListener('mousemove', (e) => {
@@ -1023,7 +1097,7 @@
       }
     }
 
-    // CANVAS PARTICLES (densitate redusa automat pe ecrane mici)
+    // CANVAS PARTICLES
     const canvas = document.getElementById('ambient-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
