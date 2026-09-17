@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iulian Popa — Real-Time Systems & Video Editing</title>
+  <title>Iulian Popa — Interactive Systems & Video Editing</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,25 +13,25 @@
     :root {
       --bg-deep: #050608;
       
-      /* SECTION 1: CYAN NEON */
+      /* SECTION 1: CYAN NEON (N.E.X.T.) */
       --cyan-neon: #00f2fe;
       --cyan-glow: rgba(0, 242, 254, 0.35);
       --cyan-glass: rgba(8, 20, 28, 0.85);
       --cyan-border: rgba(0, 242, 254, 0.22);
 
-      /* SECTION 2: EMERALD / MINT (CINEMATICS) */
-      --mint-neon: #00ffaa;
-      --mint-glow: rgba(0, 255, 170, 0.35);
-      --mint-glass: rgba(6, 24, 18, 0.85);
-      --mint-border: rgba(0, 255, 170, 0.22);
+      /* SECTION 2: EMERALD / MINT (WILDLIFE SAVIORS) */
+      --emerald-neon: #00ffaa;
+      --emerald-glow: rgba(0, 255, 170, 0.35);
+      --emerald-glass: rgba(6, 24, 18, 0.85);
+      --emerald-border: rgba(0, 255, 170, 0.22);
 
-      /* SECTION 3: AMBER / GOLD */
+      /* SECTION 3: AMBER / GOLD (EDITING SHOWCASE) */
       --amber-neon: #ff9900;
       --amber-glow: rgba(255, 153, 0, 0.35);
       --amber-glass: rgba(26, 17, 10, 0.85);
       --amber-border: rgba(255, 153, 0, 0.22);
 
-      /* SECTION 4: VIOLET / INDIGO */
+      /* SECTION 4: VIOLET / INDIGO (PRODUCTION SPECTRUM) */
       --purple-neon: #b05cff;
       --purple-glow: rgba(176, 92, 255, 0.35);
       --purple-glass: rgba(20, 12, 30, 0.85);
@@ -193,7 +193,7 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--cyan-neon), var(--mint-neon), var(--purple-neon), transparent);
+      background: linear-gradient(90deg, transparent, var(--cyan-neon), var(--emerald-neon), var(--purple-neon), transparent);
     }
 
     .hero-tagline-small {
@@ -332,46 +332,35 @@
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 35px var(--cyan-glow);
     }
 
-    /* SECTION 2: MINT (IN-ENGINE CINEMATICS) */
-    .section-mint { margin-bottom: 90px; }
-    .section-mint .section-badge { color: var(--mint-neon); }
+    /* SECTION 2: EMERALD (WILDLIFE SAVIORS) */
+    .section-emerald { margin-bottom: 90px; }
+    .section-emerald .section-badge { color: var(--emerald-neon); }
 
-    .mint-card {
-      background: var(--mint-glass);
-      border: 1px solid var(--mint-border);
+    .emerald-card {
+      background: var(--emerald-glass);
+      border: 1px solid var(--emerald-border);
       border-radius: 26px;
       padding: 34px;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(20px);
     }
 
-    .mint-card:hover {
-      border-color: var(--mint-neon);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 35px var(--mint-glow);
+    .emerald-card:hover {
+      border-color: var(--emerald-neon);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 35px var(--emerald-glow);
     }
 
-    .mint-card .play-halo {
-      background: rgba(0, 255, 170, 0.1);
-      border-color: var(--mint-neon);
-      color: var(--mint-neon);
-      box-shadow: 0 0 25px var(--mint-glow);
+    .emerald-card .col-box h4 {
+      color: var(--emerald-neon);
     }
 
-    .mint-card:hover .play-halo {
-      background: var(--mint-neon);
-      color: #000;
-    }
-
-    .mint-card .col-box h4 {
-      color: var(--mint-neon);
-    }
-
-    .mint-card .col-box:hover {
+    .emerald-card .col-box:hover {
       background: rgba(0, 255, 170, 0.05);
-      border-color: var(--mint-border);
+      border-color: var(--emerald-border);
+      transform: translateY(-3px);
     }
 
-    /* CINEMA SCREEN */
+    /* CINEMA & MEDIA SCREEN */
     .cinema-screen {
       position: relative;
       z-index: 50;
@@ -385,6 +374,7 @@
     }
 
     .cinema-screen iframe,
+    .cinema-screen img,
     .screen-static {
       position: absolute;
       top: 0;
@@ -393,6 +383,7 @@
       height: 100%;
       border: none;
       background: #000000;
+      object-fit: cover;
     }
 
     .screen-static {
@@ -495,7 +486,7 @@
 
     .amber-deck {
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
+      grid-template-columns: 1.4fr 1.1fr;
       gap: 26px;
       background: var(--amber-glass);
       border: 1px solid var(--amber-border);
@@ -539,7 +530,19 @@
       justify-content: space-between;
     }
 
-    .pl-list { display: flex; flex-direction: column; gap: 10px; }
+    .pl-list { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 10px; 
+      max-height: 480px; 
+      overflow-y: auto; 
+      padding-right: 4px;
+    }
+
+    /* Custom scrollbar pentru playlist */
+    .pl-list::-webkit-scrollbar { width: 5px; }
+    .pl-list::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+    .pl-list::-webkit-scrollbar-thumb { background: rgba(255, 153, 0, 0.3); border-radius: 4px; }
 
     .pl-entry {
       display: grid;
@@ -585,6 +588,7 @@
       color: #fff;
       font-weight: 600;
       margin-bottom: 2px;
+      line-height: 1.3;
     }
 
     .entry-text span {
@@ -672,7 +676,7 @@
       flex-wrap: wrap;
     }
 
-    /* MEDIA QUERIES */
+    /* RESPONSIVE */
     @media (max-width: 860px) {
       .amber-deck {
         grid-template-columns: 1fr;
@@ -688,7 +692,7 @@
         margin-bottom: 70px;
       }
 
-      .cyan-card, .mint-card, .amber-deck {
+      .cyan-card, .emerald-card, .amber-deck {
         padding: 24px;
       }
 
@@ -734,7 +738,7 @@
         justify-content: center;
       }
 
-      .cyan-card, .mint-card, .amber-deck {
+      .cyan-card, .emerald-card, .amber-deck {
         padding: 18px;
         border-radius: 20px;
       }
@@ -790,28 +794,26 @@
 
   <div class="layout-container">
     
-    <!-- MASTER HUD HEADER -->
     <div class="master-hud scroll-reveal">
       <div class="live-status">
         <span class="status-pulse"></span> AVAILABLE // BUCHAREST, RO
       </div>
-      <div>FOCUS: 3D SYSTEMS & VIDEO EDITING</div>
+      <div>FOCUS: 3D SYSTEMS, ENVIRONMENTS & VIDEO EDITING</div>
       <div id="clock-display">00:00:00:00</div>
     </div>
 
-    <!-- HERO PROFILE -->
     <header class="hero-stage scroll-reveal">
-      <div class="hero-tagline-small">// REAL-TIME SYSTEMS & VIDEO EDITING</div>
+      <div class="hero-tagline-small">// INTERACTIVE 3D & VIDEO EDITING</div>
       
       <h1 class="hero-author-name">IULIAN POPA</h1>
       
       <div class="hero-role-title">
-        Real-Time Systems & Video Editing
+        Real-Time Systems, 3D Environments & Video Editing
         <span class="sub-pill">ENGINEERING & ART</span>
       </div>
 
       <p class="hero-manifesto">
-        Computer Science graduate continuing with an M.Sc. in Graphics & Virtual Reality. My creative interest started with video editing, which I have practiced as a personal hobby and structured through an accredited training course. Through my bachelor's thesis, I stepped into game development, exploring how real-time mechanics work in Unity—from multiplayer synchronization to character rigging and animation overrides. I am looking to grow at the intersection of visual editing instincts and real-time technical foundations.
+        Computer Science graduate continuing with an M.Sc. in Graphics & Virtual Reality. My creative interest started with video editing, which I have practiced as a personal hobby and structured through an accredited training course. Through my academic projects and bachelor's thesis, I stepped into game development, exploring how real-time mechanics work in Unity—from multiplayer synchronization and character animation to 3D environment staging. I am looking to grow at the intersection of visual editing instincts and real-time technical foundations.
       </p>
       
       <div class="contact-dock">
@@ -821,7 +823,6 @@
       </div>
     </header>
 
-    <!-- SECTION 1: N.E.X.T. -->
     <section class="section-cyan">
       <div class="section-title-wrap scroll-reveal reveal-left">
         <h2>01 / N.E.X.T. — Multiplayer Co-op Study</h2>
@@ -839,7 +840,6 @@
           </div>
         </div>
 
-        <!-- BUTON ACTUALIZAT: 4-MINUTE DEMO -->
         <div class="walkthrough-link-wrap">
           <a href="https://youtube.com" target="_blank" class="walkthrough-btn">
             Watch Full 4-Minute Demo (Presented at Thesis Defense) ↗
@@ -863,46 +863,44 @@
       </div>
     </section>
 
-    <!-- SECTION 2: IN-ENGINE CINEMATICS (NOUL MINI-PROIECT) -->
-    <section class="section-mint">
+    <section class="section-emerald">
       <div class="section-title-wrap scroll-reveal reveal-left">
-        <h2>02 / In-Engine Cinematics & Camera Staging</h2>
-        <span class="section-badge">VIRTUAL CAMERAS // CINEMACHINE // TIMELINE</span>
+        <h2>02 / Wildlife Saviors — Environment & Landscapes</h2>
+        <span class="section-badge">UNITY // 3D ENVIRONMENT // LIGHTING & STAGING</span>
       </div>
 
-      <div class="mint-card scroll-reveal">
+      <div class="emerald-card scroll-reveal">
         <div class="cinema-screen">
-          <div class="screen-static">
-            <div class="play-halo">▶</div>
-            <div style="font-family: var(--font-code); font-size: 0.85rem; letter-spacing: 1px; color: var(--mint-neon);">
-              [ CINEMATIC SEQUENCE — THE TUNNEL WALKOUT (20-25s) ]
+          <img src="wildlife-landscapes.gif" alt="Wildlife Saviors — Landscapes & Atmosphere Showcase" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="screen-static" style="display: none;">
+            <div style="font-family: var(--font-code); font-size: 0.85rem; letter-spacing: 1px; color: var(--emerald-neon);">
+              [ WILDLIFE SAVIORS — LANDSCAPES & ATMOSPHERE SHOWCASE GIF ]
             </div>
-            <div style="font-size: 0.72rem; color: #5a667d;">In Production • Awaiting In-Engine Render Embed</div>
+            <div style="font-size: 0.72rem; color: #5a667d;">Place 'wildlife-landscapes.gif' in project root</div>
           </div>
         </div>
 
         <div class="feature-columns">
           <div class="col-box">
-            <h4>Virtual Cameras & Focal Lengths</h4>
-            <p>Orchestrated a 4-shot sequence using Cinemachine Virtual Cameras, contrasting low-angle wide lenses (20mm) for physical weight with narrow telephoto lenses (85mm) for character focus.</p>
+            <h4>Environment Art & Terrain</h4>
+            <p>Designed organic natural environments and terrain topology in Unity, focusing on natural vistas, biomes, and landscape depth.</p>
           </div>
           <div class="col-box">
-            <h4>Timeline Sequencing & Blends</h4>
-            <p>Directed character locomotion and camera tracks synchronously on Unity Timeline, implementing subtle camera cuts and blend transitions to mirror broadcast pacing.</p>
+            <h4>Atmospheric Lighting & Mood</h4>
+            <p>Configured directional daylight, skybox reflections, volumetric fog, and ambient color palettes to create distinct environmental tones across the game world.</p>
           </div>
           <div class="col-box">
-            <h4>Physical Depth of Field & Staging</h4>
-            <p>Utilized real-time Post-Processing Volumes to execute dynamic rack focus between environmental background elements and character close-ups, complemented by high-contrast rim lighting.</p>
+            <h4>Scene Staging & Composition</h4>
+            <p>Composed visual focal points and camera angles that guide player exploration and emphasize the scale of wildlife habitats.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: EDITING SHOWCASE -->
     <section class="section-amber">
       <div class="section-title-wrap scroll-reveal reveal-right">
-        <h2>03 / Editing Showcase</h2>
-        <span class="section-badge">ADOBE PREMIERE PRO // CERTIFIED EDITOR</span>
+        <h2>03 / Video Editing & Motion Works</h2>
+        <span class="section-badge">ADOBE PREMIERE PRO // ACCREDITED COURSE & PRACTICE</span>
       </div>
 
       <div class="amber-deck scroll-reveal">
@@ -910,7 +908,7 @@
           <div class="cinema-screen" id="active-player-screen">
             <iframe 
               src="https://www.youtube.com/embed/6zJJRIUp-ro" 
-              title="Fast-Paced Gameplay Edit" 
+              title="FC Weekend League: 13-Win Journey" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               referrerpolicy="strict-origin-when-cross-origin" 
               allowfullscreen>
@@ -918,9 +916,9 @@
           </div>
 
           <div class="meta-content">
-            <h3 id="project-headline">Fast-Paced Gameplay Edit</h3>
+            <h3 id="project-headline">FC Weekend League: 13-Win Journey</h3>
             <p id="project-description">
-              Personal hobby project focused on beat-matching, speed ramping, and timing cuts to game sound effects.
+              High-energy personal gaming edit recapping a competitive Weekend League run to 13 victories. Focused on audio-visual synchronization, dynamic action cuts, and fast-paced beat matching to electronic action music.
             </p>
           </div>
         </div>
@@ -928,63 +926,89 @@
         <div class="playlist-wrapper">
           <div class="pl-header">
             <span>Selected Projects</span>
-            <span>Playlist (3 Works)</span>
+            <span>Playlist (5 Works)</span>
           </div>
 
           <div class="pl-list">
-            <!-- Proiect 1 -->
             <div class="pl-entry active" 
                  onclick="selectProject(
-                   'Fast-Paced Gameplay Edit',
-                   'Personal hobby project focused on beat-matching, speed ramping, and timing cuts to game sound effects.',
+                   'FC Weekend League: 13-Win Journey',
+                   'High-energy personal gaming edit recapping a competitive Weekend League run to 13 victories. Focused on audio-visual synchronization, dynamic action cuts, and fast-paced beat matching to electronic action music.',
                    'https://www.youtube.com/embed/6zJJRIUp-ro',
                    this
                  )">
-              <div class="entry-badge">HOBBY</div>
+              <div class="entry-badge">GAMING</div>
               <div class="entry-text">
-                <h5>Gameplay Montage</h5>
-                <span>Beat Matching & Flow</span>
+                <h5>FC Weekend League</h5>
+                <span>13-Win Journey • Action Beat Sync</span>
               </div>
               <div class="entry-time">1:00</div>
             </div>
 
-            <!-- Proiect 2 -->
             <div class="pl-entry" 
                  onclick="selectProject(
-                   'Motion & Typography Study',
-                   'Exercise exploring title animations, simple transitions, and color grading passes in Premiere Pro and After Effects.',
-                   'https://www.youtube.com/embed/YOUR_ID_AICI',
-                   this
-                 )">
-              <div class="entry-badge">PRACTICE</div>
-              <div class="entry-text">
-                <h5>Motion & Typography</h5>
-                <span>Visual Transitions</span>
-              </div>
-              <div class="entry-time">0:45</div>
-            </div>
-
-            <!-- Proiect 3 -->
-            <div class="pl-entry" 
-                 onclick="selectProject(
-                   'Atmospheric Cut',
-                   'A study created for the image editing certification, focusing on slower pacing, continuity, and scene tension.',
+                   'Football Rhythm Cut — Shakira \"La La La\"',
+                   'Short football montage created as an assignment for the accredited image editor course. Centered on precise cut-on-beat rhythm, match-on-action transitions, and high-tempo sports energy.',
                    'https://www.youtube.com/embed/YOUR_ID_AICI',
                    this
                  )">
               <div class="entry-badge">COURSE</div>
               <div class="entry-text">
-                <h5>Atmospheric Study</h5>
-                <span>Continuity & Sound</span>
+                <h5>Football Rhythm Cut</h5>
+                <span>Shakira \"La La La\" • Beat Pacing</span>
+              </div>
+              <div class="entry-time">0:45</div>
+            </div>
+
+            <div class="pl-entry" 
+                 onclick="selectProject(
+                   'ServiceNow AI Agent: \"Airwall\" Demo',
+                   'Product demo and UI motion video developed for a ServiceNow AI agent named Airwall. Showcases clean interface flow, explanatory screen pacing, and corporate visual clarity.',
+                   'https://www.youtube.com/embed/YOUR_ID_AICI',
+                   this
+                 )">
+              <div class="entry-badge">TECH</div>
+              <div class="entry-text">
+                <h5>\"Airwall\" AI Agent Demo</h5>
+                <span>ServiceNow Product Showcase</span>
+              </div>
+              <div class="entry-time">1:30</div>
+            </div>
+
+            <div class="pl-entry" 
+                 onclick="selectProject(
+                   'Horror Nightmare Sequence (Stock Footage Study)',
+                   'Atmospheric course project built entirely from curated stock footage. Explores slow tension-building, discordant sound design, and psychological horror pacing.',
+                   'https://www.youtube.com/embed/YOUR_ID_AICI',
+                   this
+                 )">
+              <div class="entry-badge">COURSE</div>
+              <div class="entry-text">
+                <h5>Horror Dream Sequence</h5>
+                <span>Stock Footage • Tension & Audio Flow</span>
               </div>
               <div class="entry-time">1:15</div>
+            </div>
+
+            <div class="pl-entry" 
+                 onclick="selectProject(
+                   'Subtitled Reportage Study (Broadcast Language)',
+                   'Journalistic edit assignment using stock footage, emphasizing documentary pacing, color consistency, and timed subtitle typography for broadcast/web distribution.',
+                   'https://www.youtube.com/embed/YOUR_ID_AICI',
+                   this
+                 )">
+              <div class="entry-badge">COURSE</div>
+              <div class="entry-text">
+                <h5>Subtitled Reportage</h5>
+                <span>Documentary Style • Typo & Pacing</span>
+              </div>
+              <div class="entry-time">1:20</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: PRODUCTION SPECTRUM -->
     <section class="section-purple">
       <div class="section-title-wrap scroll-reveal reveal-left">
         <h2>04 / Production Spectrum</h2>
@@ -993,26 +1017,26 @@
 
       <div class="purple-grid">
         <div class="spectrum-card scroll-reveal reveal-left">
-          <h3>Video Editing</h3>
+          <h3>Video Editing & Motion</h3>
           <div class="tag-cloud">
             <span class="spectrum-tag"><strong>Adobe Premiere Pro</strong></span>
             <span class="spectrum-tag"><strong>After Effects (Basics)</strong></span>
             <span class="spectrum-tag">Accredited Editor (ILBAH)</span>
             <span class="spectrum-tag">Beat Matching</span>
-            <span class="spectrum-tag">Speed Ramping</span>
-            <span class="spectrum-tag">Audio Sync</span>
+            <span class="spectrum-tag">Product Demo Flow</span>
+            <span class="spectrum-tag">Sound Design & Pacing</span>
           </div>
         </div>
 
         <div class="spectrum-card scroll-reveal">
-          <h3>Game Dev & Real-Time</h3>
+          <h3>Game Dev & 3D (Unity)</h3>
           <div class="tag-cloud">
             <span class="spectrum-tag"><strong>Unity 3D</strong></span>
-            <span class="spectrum-tag"><strong>Cinemachine & Timeline</strong></span>
+            <span class="spectrum-tag"><strong>C# Scripting</strong></span>
             <span class="spectrum-tag">Netcode Basics</span>
             <span class="spectrum-tag">Two-Bone IK</span>
             <span class="spectrum-tag">Animator Layers & Masks</span>
-            <span class="spectrum-tag">Blender (Basics)</span>
+            <span class="spectrum-tag">Environment & Landscapes</span>
           </div>
         </div>
 
@@ -1029,7 +1053,6 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="scroll-reveal">
       <div>IULIAN-MARIAN POPA // ALL RIGHTS RESERVED 2026</div>
       <div>BUCHAREST, RO // GITHUB PAGES HOSTED</div>
@@ -1058,7 +1081,7 @@
       scrollElements.forEach(el => revealObserver.observe(el));
     });
 
-    // SPOTLIGHT CURSOR
+    // SPOTLIGHT CURSOR (activ doar pe desktop)
     const spot = document.getElementById('mouse-spotlight');
     if (window.matchMedia('(pointer: fine)').matches) {
       window.addEventListener('mousemove', (e) => {
