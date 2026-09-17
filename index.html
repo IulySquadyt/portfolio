@@ -953,4 +953,229 @@
                  )'>
               <div class="entry-badge">COURSE</div>
               <div class="entry-text">
-                <h5>
+                <h5>Football Rhythm Cut</h5>
+                <span>Shakira "La La La" • Beat Pacing</span>
+              </div>
+              <div class="entry-time">0:45</div>
+            </div>
+
+            <div class="pl-entry" 
+                 onclick='selectProject(
+                   "\"Airwall\" AI Agent Demo",
+                   "Product demo and UI motion video developed for a ServiceNow AI agent named Airwall. Showcases clean interface flow, explanatory screen pacing, and corporate visual clarity.",
+                   "https://www.youtube.com/embed/gv1Jhiezo0M",
+                   this
+                 )'>
+              <div class="entry-badge">TECH</div>
+              <div class="entry-text">
+                <h5>"Airwall" AI Agent Demo</h5>
+                <span>ServiceNow Product Showcase</span>
+              </div>
+              <div class="entry-time">1:30</div>
+            </div>
+
+            <div class="pl-entry" 
+                 onclick='selectProject(
+                   "Horror Nightmare Sequence (Stock Footage Study)",
+                   "Atmospheric course project built entirely from curated stock footage. Explores slow tension-building, discordant sound design, and psychological horror pacing.",
+                   "https://www.youtube.com/embed/Xe7jK7Smvh0",
+                   this
+                 )'>
+              <div class="entry-badge">COURSE</div>
+              <div class="entry-text">
+                <h5>Horror Dream Sequence</h5>
+                <span>Stock Footage • Tension & Audio Flow</span>
+              </div>
+              <div class="entry-time">1:15</div>
+            </div>
+
+            <div class="pl-entry" 
+                 onclick='selectProject(
+                   "Subtitled Reportage Study (Broadcast Language)",
+                   "Journalistic edit assignment using stock footage, emphasizing documentary pacing, color consistency, and timed subtitle typography for broadcast/web distribution.",
+                   "https://www.youtube.com/embed/5wqtNzOfec4",
+                   this
+                 )'>
+              <div class="entry-badge">COURSE</div>
+              <div class="entry-text">
+                <h5>Subtitled Reportage</h5>
+                <span>Documentary Style • Typo & Pacing</span>
+              </div>
+              <div class="entry-time">1:20</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-purple">
+      <div class="section-title-wrap scroll-reveal reveal-left">
+        <h2>04 / Production Spectrum</h2>
+        <span class="section-badge">FOUNDATIONS & PRACTICED TOOLS</span>
+      </div>
+
+      <div class="purple-grid">
+        <div class="spectrum-card scroll-reveal reveal-left">
+          <h3>Video Editing & Motion</h3>
+          <div class="tag-cloud">
+            <span class="spectrum-tag"><strong>Adobe Premiere Pro</strong></span>
+            <span class="spectrum-tag"><strong>After Effects (Basics)</strong></span>
+            <span class="spectrum-tag">Accredited Editor (ILBAH)</span>
+            <span class="spectrum-tag">Beat Matching</span>
+            <span class="spectrum-tag">Product Demo Flow</span>
+            <span class="spectrum-tag">Sound Design & Pacing</span>
+          </div>
+        </div>
+
+        <div class="spectrum-card scroll-reveal">
+          <h3>Game Dev & 3D (Unity)</h3>
+          <div class="tag-cloud">
+            <span class="spectrum-tag"><strong>Unity 3D</strong></span>
+            <span class="spectrum-tag"><strong>C# Scripting</strong></span>
+            <span class="spectrum-tag">Netcode Basics</span>
+            <span class="spectrum-tag">Two-Bone IK</span>
+            <span class="spectrum-tag">Animator Layers & Masks</span>
+            <span class="spectrum-tag">Environment & Landscapes</span>
+          </div>
+        </div>
+
+        <div class="spectrum-card scroll-reveal reveal-right">
+          <h3>Academic Foundation</h3>
+          <div class="tag-cloud">
+            <span class="spectrum-tag"><strong>B.Eng. in Computer Science</strong></span>
+            <span class="spectrum-tag"><strong>M.Sc. VR & Graphics</strong></span>
+            <span class="spectrum-tag">C / C++</span>
+            <span class="spectrum-tag">Object-Oriented Programming</span>
+            <span class="spectrum-tag">Git / Versioning</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="scroll-reveal">
+      <div>IULIAN-MARIAN POPA // ALL RIGHTS RESERVED 2026</div>
+      <div>BUCHAREST, RO // GITHUB PAGES HOSTED</div>
+    </footer>
+
+  </div>
+
+  <script>
+    // SCROLL REVEAL (INTERSECTION OBSERVER)
+    document.addEventListener('DOMContentLoaded', () => {
+      const scrollElements = document.querySelectorAll('.scroll-reveal');
+      
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          } else {
+            entry.target.classList.remove('is-visible');
+          }
+        });
+      }, {
+        threshold: 0.05,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      scrollElements.forEach(el => revealObserver.observe(el));
+    });
+
+    // SPOTLIGHT CURSOR (activ doar pe desktop)
+    const spot = document.getElementById('mouse-spotlight');
+    if (window.matchMedia('(pointer: fine)').matches) {
+      window.addEventListener('mousemove', (e) => {
+        spot.style.left = e.clientX + 'px';
+        spot.style.top = e.clientY + 'px';
+      });
+    }
+
+    // PLAYLIST SELECTOR
+    function selectProject(title, desc, url, el) {
+      document.querySelectorAll('.pl-entry').forEach(i => i.classList.remove('active'));
+      el.classList.add('active');
+
+      document.getElementById('project-headline').textContent = title;
+      document.getElementById('project-description').textContent = desc;
+
+      const screen = document.getElementById('active-player-screen');
+      if (url.includes('YOUR_')) {
+        screen.innerHTML = `
+          <div class="screen-static">
+            <div class="play-halo">▶</div>
+            <div style="font-family: var(--font-code); font-size: 0.82rem; letter-spacing: 1px;">${title}</div>
+            <div style="font-size: 0.72rem; color: #5a667d;">Awaiting YouTube Embed ID</div>
+          </div>
+        `;
+      } else {
+        const cleanUrl = url.includes('?') ? `${url}&autoplay=1` : `${url}?autoplay=1`;
+        screen.innerHTML = `
+          <iframe 
+            src="${cleanUrl}" 
+            title="${title}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+          </iframe>
+        `;
+      }
+    }
+
+    // CANVAS PARTICLES
+    const canvas = document.getElementById('ambient-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 1.6 + 0.3;
+        this.speedX = (Math.random() - 0.5) * 0.25;
+        this.speedY = (Math.random() - 0.5) * 0.25;
+        this.alpha = Math.random() * 0.4 + 0.1;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+      }
+      draw() {
+        ctx.fillStyle = `rgba(0, 242, 254, ${this.alpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const particleCount = window.innerWidth < 600 ? 20 : 45;
+    for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+
+    function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(loop);
+    }
+    loop();
+
+    // CLOCK TIMECODE
+    function clock() {
+      const d = new Date();
+      const h = String(d.getHours()).padStart(2, '0');
+      const m = String(d.getMinutes()).padStart(2, '0');
+      const s = String(d.getSeconds()).padStart(2, '0');
+      const f = String(Math.floor((d.getMilliseconds() / 1000) * 60)).padStart(2, '0');
+      const el = document.getElementById('clock-display');
+      if (el) el.textContent = `${h}:${m}:${s}:${f}`;
+    }
+    setInterval(clock, 16);
+  </script>
+</body>
+</html>
