@@ -173,6 +173,11 @@
       100% { transform: scale(0.95); opacity: 0.8; }
     }
 
+    .hud-focus {
+      text-align: right;
+      letter-spacing: 0.5px;
+    }
+
     /* HERO SECTION */
     .hero-stage {
       position: relative;
@@ -713,6 +718,10 @@
         gap: 8px;
       }
 
+      .hud-focus {
+        text-align: left;
+      }
+
       .hero-stage {
         padding: 30px 18px;
         border-radius: 20px;
@@ -795,14 +804,15 @@
 
   <div class="layout-container">
     
+    <!-- MASTER HUD HEADER (Ceas eliminat, Focus aliniat la dreapta) -->
     <div class="master-hud scroll-reveal">
       <div class="live-status">
         <span class="status-pulse"></span> AVAILABLE // BUCHAREST, RO
       </div>
-      <div>FOCUS: 3D SYSTEMS, ENVIRONMENTS & VIDEO EDITING</div>
-      <div id="clock-display">00:00:00:00</div>
+      <div class="hud-focus">FOCUS: 3D SYSTEMS, ENVIRONMENTS & VIDEO EDITING</div>
     </div>
 
+    <!-- HERO PROFILE -->
     <header class="hero-stage scroll-reveal">
       <div class="hero-tagline-small">// INTERACTIVE 3D & VIDEO EDITING</div>
       
@@ -820,10 +830,11 @@
       <div class="contact-dock">
         <a href="mailto:iulianpopa167@gmail.com" class="dock-btn">✉ iulianpopa167@gmail.com</a>
         <a href="tel:+40740041206" class="dock-btn">📱 +40 740 041 206</a>
-        <a href="https://linkedin.com" target="_blank" class="dock-btn">↗ LinkedIn Profile</a>
+        <a href="https://www.linkedin.com/in/iulian-marian-popa-47539b211/" target="_blank" class="dock-btn">↗ LinkedIn Profile</a>
       </div>
     </header>
 
+    <!-- SECTION 1: N.E.X.T. -->
     <section class="section-cyan">
       <div class="section-title-wrap scroll-reveal reveal-left">
         <h2>01 / N.E.X.T. — Multiplayer Co-op Study</h2>
@@ -864,6 +875,7 @@
       </div>
     </section>
 
+    <!-- SECTION 2: WILDLIFE SAVIORS (VIDEO NATIV MP4) -->
     <section class="section-emerald">
       <div class="section-title-wrap scroll-reveal reveal-left">
         <h2>02 / Wildlife Saviors — Environment & Landscapes</h2>
@@ -899,6 +911,7 @@
       </div>
     </section>
 
+    <!-- SECTION 3: EDITING SHOWCASE (DURATE ACTUALIZATE) -->
     <section class="section-amber">
       <div class="section-title-wrap scroll-reveal reveal-right">
         <h2>03 / Video Editing & Motion Works</h2>
@@ -932,6 +945,7 @@
           </div>
 
           <div class="pl-list">
+            <!-- Proiect 1 -->
             <div class="pl-entry active" 
                  onclick='selectProject(
                    "FC Weekend League: 13-Win Journey",
@@ -944,9 +958,10 @@
                 <h5>FC Weekend League</h5>
                 <span>13-Win Journey • Action Beat Sync</span>
               </div>
-              <div class="entry-time">1:00</div>
+              <div class="entry-time">2:50</div>
             </div>
 
+            <!-- Proiect 2 -->
             <div class="pl-entry" 
                  onclick='selectProject(
                    "Football Rhythm Cut — Shakira \"La La La\"",
@@ -959,9 +974,10 @@
                 <h5>Football Rhythm Cut</h5>
                 <span>Shakira "La La La" • Beat Pacing</span>
               </div>
-              <div class="entry-time">0:45</div>
+              <div class="entry-time">0:44</div>
             </div>
 
+            <!-- Proiect 3 -->
             <div class="pl-entry" 
                  onclick='selectProject(
                    "\"Airwall\" AI Agent Demo",
@@ -974,9 +990,10 @@
                 <h5>"Airwall" AI Agent Demo</h5>
                 <span>ServiceNow Product Showcase</span>
               </div>
-              <div class="entry-time">1:30</div>
+              <div class="entry-time">1:00</div>
             </div>
 
+            <!-- Proiect 4 -->
             <div class="pl-entry" 
                  onclick='selectProject(
                    "Horror Nightmare Sequence (Stock Footage Study)",
@@ -989,9 +1006,10 @@
                 <h5>Horror Dream Sequence</h5>
                 <span>Stock Footage • Tension & Audio Flow</span>
               </div>
-              <div class="entry-time">1:15</div>
+              <div class="entry-time">1:57</div>
             </div>
 
+            <!-- Proiect 5 -->
             <div class="pl-entry" 
                  onclick='selectProject(
                    "Subtitled Reportage Study (Broadcast Language)",
@@ -1004,13 +1022,14 @@
                 <h5>Subtitled Reportage</h5>
                 <span>Documentary Style • Typo & Pacing</span>
               </div>
-              <div class="entry-time">1:20</div>
+              <div class="entry-time">3:12</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- SECTION 4: PRODUCTION SPECTRUM -->
     <section class="section-purple">
       <div class="section-title-wrap scroll-reveal reveal-left">
         <h2>04 / Production Spectrum</h2>
@@ -1055,6 +1074,7 @@
       </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="scroll-reveal">
       <div>IULIAN-MARIAN POPA // ALL RIGHTS RESERVED 2026</div>
       <div>BUCHAREST, RO // GITHUB PAGES HOSTED</div>
@@ -1167,18 +1187,6 @@
       requestAnimationFrame(loop);
     }
     loop();
-
-    // CLOCK TIMECODE
-    function clock() {
-      const d = new Date();
-      const h = String(d.getHours()).padStart(2, '0');
-      const m = String(d.getMinutes()).padStart(2, '0');
-      const s = String(d.getSeconds()).padStart(2, '0');
-      const f = String(Math.floor((d.getMilliseconds() / 1000) * 60)).padStart(2, '0');
-      const el = document.getElementById('clock-display');
-      if (el) el.textContent = `${h}:${m}:${s}:${f}`;
-    }
-    setInterval(clock, 16);
   </script>
 </body>
 </html>
