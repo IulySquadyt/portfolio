@@ -375,6 +375,7 @@
     }
 
     .cinema-screen iframe,
+    .cinema-screen video,
     .cinema-screen img,
     .screen-static {
       position: absolute;
@@ -871,13 +872,14 @@
 
       <div class="emerald-card scroll-reveal">
         <div class="cinema-screen">
-          <img src="wildlife-landscapes.gif" alt="Wildlife Saviors — Landscapes & Atmosphere Showcase" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="screen-static" style="display: none;">
-            <div style="font-family: var(--font-code); font-size: 0.85rem; letter-spacing: 1px; color: var(--emerald-neon);">
-              [ WILDLIFE SAVIORS — LANDSCAPES & ATMOSPHERE SHOWCASE GIF ]
-            </div>
-            <div style="font-size: 0.72rem; color: #5a667d;">Place 'wildlife-landscapes.gif' in project root</div>
-          </div>
+          <video 
+            controls 
+            playsinline 
+            preload="metadata"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; background: #000;">
+            <source src="wildlife-landscapes.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
 
         <div class="feature-columns">
