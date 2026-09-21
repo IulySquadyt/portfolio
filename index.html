@@ -428,7 +428,24 @@
     .walkthrough-link-wrap {
       display: flex;
       justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
       margin-bottom: 26px;
+    }
+
+    .walkthrough-btn.itch-btn {
+      background: rgba(0, 242, 254, 0.18);
+      border-color: var(--cyan-neon);
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+    }
+
+    .walkthrough-btn.itch-btn:hover {
+      background: var(--cyan-neon);
+      color: #000000;
+      box-shadow: 0 0 25px var(--cyan-neon);
+      transform: translateY(-2px);
     }
 
     .walkthrough-btn {
@@ -851,6 +868,9 @@
         </div>
 
         <div class="walkthrough-link-wrap">
+          <a href="https://iulysquad.itch.io/next" target="_blank" class="walkthrough-btn itch-btn">
+            🎮 Playable Build on itch.io ↗
+          </a>
           <a href="https://youtu.be/mS1t8DMnubc" target="_blank" class="walkthrough-btn">
             Watch Full 4-Minute Demo (Presented at Thesis Defense) ↗
           </a>
