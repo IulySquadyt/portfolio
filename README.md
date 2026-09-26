@@ -1,102 +1,65 @@
-# Portfolio Website
+# Iulian Popa — Portfolio Website
 
-Welcome to my portfolio website! This is a personal project showcasing my work, skills, and experience.
+This repository contains the online portfolio of **Iulian Popa**, focused on interactive 3D systems, real-time environments, and video editing.
 
-## Getting Started
+## View the Website Online
 
-### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn package manager
-- Git
+Visit the portfolio here:
 
-### Installation
+**[Open Iulian Popa's Portfolio](https://iulysquadyt.github.io/portfolio/)**
 
-1. Clone the repository:
-```bash
-git clone https://github.com/IulySquadyt/portfolio.git
-cd portfolio
-```
+The website is designed to be viewed directly in a modern web browser. No installation or account is required. For the best experience, use an up-to-date version of Chrome, Firefox, Edge, or Safari.
 
-2. Install dependencies:
-```bash
-npm install
-```
+## What You Will Find on the Website
 
-3. Start the development server:
-```bash
-npm start
-```
+### Profile and Contact
 
-The website will be available at `http://localhost:3000` (or the configured port).
+The landing section introduces Iulian Popa and his focus on real-time systems, 3D environments, and video editing. It also includes a link to his [LinkedIn profile](https://www.linkedin.com/in/iulian-marian-popa-47539b211/).
 
-## Project Structure
+### N.E.X.T. — Multiplayer Co-op Study
 
-- `/src` - Source code files
-- `/public` - Static assets
-- `/components` - Reusable React components
-- `/pages` - Page components
-- `/styles` - CSS stylesheets
+This section presents a bachelor's thesis project created with Unity and Netcode. It covers:
 
-## Features
+- Multiplayer synchronization and client-server concepts
+- Procedural aiming and item gripping using inverse kinematics
+- Layered animation logic for locomotion, aiming, and item interactions
+- A video showcase embedded from YouTube
+- A playable build available on [itch.io](https://iulysquad.itch.io/next)
+- A full project demonstration from the thesis defense
 
-- Responsive design
-- Showcase of projects and skills
-- Contact information
-- About section
+### Wildlife Saviors — Environment & Landscapes
 
-## Development
+This section showcases Unity environment work, including:
 
-### Available Scripts
+- 3D terrain and natural environments
+- Wildlife habitat composition and scene staging
+- Atmospheric lighting, skybox reflections, and volumetric fog
+- A landscape video that can be played directly on the website
 
-- `npm start` - Run development server
-- `npm build` - Build for production
-- `npm test` - Run tests
-- `npm deploy` - Deploy to production (if configured)
+Use the video controls to play, pause, adjust the volume, or view the footage fullscreen.
 
-### Making Changes
+### Video Editing & Motion Works
 
-1. Create a new branch for your changes:
-```bash
-git checkout -b feature/your-feature-name
-```
+The editing showcase contains a selectable playlist of video projects. Select an item from the playlist to update the main video and project description. The collection includes gaming edits, football montages, course assignments, audio-visual synchronization, beat-based pacing, and motion-focused editing work.
 
-2. Make your changes and commit:
-```bash
-git add .
-git commit -m "Description of changes"
-```
+The videos are embedded from YouTube and can be played using the controls provided by the video player.
 
-3. Push to your branch:
-```bash
-git push origin feature/your-feature-name
-```
+### Core Capabilities
 
-4. Create a pull request to merge changes
+The final section summarizes the technologies and creative areas represented in the portfolio, including real-time systems, Unity development, 3D environment creation, lighting, staging, video editing, and motion work.
 
-## Deployment
+## How to Navigate
 
-The website can be deployed using:
-- GitHub Pages
-- Vercel
-- Netlify
-- Traditional web hosting
+1. Open the [online portfolio](https://iulysquadyt.github.io/portfolio/).
+2. Scroll through the page to reveal each section and project.
+3. Use the embedded video controls to watch project showcases.
+4. Select different entries in the video-editing playlist to view other works.
+5. Follow the external links to the playable N.E.X.T. build, YouTube demonstrations, or LinkedIn profile.
 
-Follow the configuration specific to your chosen platform.
+The page is responsive and can be viewed on desktop computers, tablets, and mobile devices.
 
-## Technologies Used
+## Repository Contents
 
-- React (or your framework)
-- HTML/CSS
-- JavaScript
+- `index.html` — The complete portfolio website
+- `wildlife-landscapes.mp4` — Video used in the Wildlife Saviors section
 
-## Contact
-
-For inquiries or feedback, please reach out through the contact form on the website or via GitHub.
-
-## License
-
-This project is open source. See LICENSE file for details.
-
----
-
-Happy coding! 🚀
